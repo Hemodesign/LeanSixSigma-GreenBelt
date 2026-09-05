@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lean Six Sigma — Green Belt -harjoitusohjelma</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#E7EAE4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14181D" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="LSS Green Belt">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E7EAE4;
+  --card:#FCFCFA;
+  --ink:#16202B;
+  --ink-2:#4A5763;
+  --ink-3:#7B8792;
+  --line:rgba(22,32,43,.14);
+  --line-2:rgba(22,32,43,.28);
+  --teal:#1F6F5C;
+  --teal-soft:#E2EFEA;
+  --red:#B5301E;
+  --red-soft:#F7E5E1;
+  --amber:#DFA30F;
+  --amber-soft:#F8EDD2;
+  --slate:#22303C;
+  --grid:rgba(22,32,43,.045);
+  --r:4px;
+  color-scheme:light dark;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#14181D;
+    --card:#1E262F;
+    --ink:#E9E7DE;
+    --ink-2:#B7BFC6;
+    --ink-3:#828C94;
+    --line:rgba(233,231,222,.13);
+    --line-2:rgba(233,231,222,.26);
+    --teal:#4FBFA0;
+    --teal-soft:rgba(79,191,160,.16);
+    --red:#E4796A;
+    --red-soft:rgba(228,121,106,.16);
+    --amber:#E7B84C;
+    --amber-soft:rgba(231,184,76,.16);
+    --grid:rgba(233,231,222,.05);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14181D;
+  --card:#1E262F;
+  --ink:#E9E7DE;
+  --ink-2:#B7BFC6;
+  --ink-3:#828C94;
+  --line:rgba(233,231,222,.13);
+  --line-2:rgba(233,231,222,.26);
+  --teal:#4FBFA0;
+  --teal-soft:rgba(79,191,160,.16);
+  --red:#E4796A;
+  --red-soft:rgba(228,121,106,.16);
+  --amber:#E7B84C;
+  --amber-soft:rgba(231,184,76,.16);
+  --grid:rgba(233,231,222,.05);
+}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:26px 26px;
+  color:var(--ink);
+  font-family:"IBM Plex Serif",Georgia,serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4,.cond{font-family:"IBM Plex Sans Condensed",Arial Narrow,sans-serif;letter-spacing:-.01em}
+.mono,code,.tag,.num{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+/* ---------- shell ---------- */
+.app{max-width:1180px;margin:0 auto;padding:0 16px 88px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  height:64px;flex:0 0 64px;
+  border-bottom:1px solid var(--line-2);
+  top:0;z-index:40;
+  background:var(--paper);
+}
+@media(min-width:641px){.topbar{position:sticky}}
+.hdr-right{display:flex;align-items:center;gap:14px;flex:0 0 auto}
+.theme-btn{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;
+  background:transparent;color:var(--ink-3);border:1px solid var(--line-2);border-radius:var(--r);
+  padding:6px 10px;cursor:pointer;flex:0 0 auto;white-space:nowrap;
+}
+.theme-btn:hover{color:var(--ink);background:rgba(127,127,127,.08)}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;cursor:pointer;background:none;border:0;padding:0;text-align:left;color:inherit}
+.mark{
+  width:42px;height:42px;flex:0 0 42px;border-radius:50%;
+  background:var(--slate);color:#F3EFE4;
+  display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;font-size:20px;font-weight:600;
+  box-shadow:0 0 0 3px var(--paper), 0 0 0 4px var(--line-2);
+}
+.brand div{min-width:0}
+.brand h1{font-size:19px;margin:0;line-height:1.1;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand p{margin:2px 0 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-family:"IBM Plex Mono",monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-stat{text-align:right;font-family:"IBM Plex Mono",monospace;line-height:1.15}
+.hdr-stat b{font-size:22px;font-weight:600;display:block}
+.hdr-stat span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+@media(max-width:520px){
+  .topbar{height:48px;flex-basis:48px}
+  .mark{width:28px;height:28px;flex-basis:28px;font-size:13px;box-shadow:none}
+  .brand{gap:8px}
+  .brand h1{font-size:14px}
+  .brand p{display:none}
+  .theme-btn{padding:4px 6px;font-size:9px}
+  .hdr-stat b{font-size:14px}
+  .hdr-stat span{display:none}
+  .hdr-right{gap:6px}
+}
+
+.layout{display:grid;grid-template-columns:236px 1fr;gap:34px;padding-top:22px;align-items:start}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:18px}}
+
+/* ---------- rail ---------- */
+.rail{position:sticky;top:80px}
+@media(max-width:860px){
+  .rail{position:static;display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}
+}
+.rail-title{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-family:"IBM Plex Mono",monospace;margin:0 0 10px}
+@media(max-width:860px){.rail-title{display:none}}
+.phase-btn{
+  display:flex;align-items:center;gap:10px;width:100%;
+  background:transparent;border:0;border-left:2px solid var(--line);
+  padding:9px 10px;cursor:pointer;text-align:left;color:var(--ink-2);
+  font-family:"IBM Plex Sans Condensed",sans-serif;font-size:15px;font-weight:600;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.phase-btn:hover{background:rgba(22,32,43,.05);color:var(--ink)}
+.phase-btn.on{border-left-color:var(--slate);color:var(--ink);background:rgba(22,32,43,.06)}
+.phase-btn .code{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;width:20px;height:20px;flex:0 0 20px;
+  display:grid;place-items:center;border:1px solid var(--line-2);border-radius:50%;color:var(--ink-3)
+}
+.phase-btn.on .code,.phase-btn.full .code{background:var(--slate);color:#F3EFE4;border-color:var(--slate)}
+.phase-btn .pct{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3)}
+@media(max-width:860px){
+  .phase-btn{width:auto;flex:0 0 auto;border-left:0;border-bottom:2px solid var(--line);border-radius:0;white-space:nowrap;padding:8px 12px}
+  .phase-btn.on{border-bottom-color:var(--slate)}
+  .phase-btn .pct{margin-left:8px}
+}
+
+/* ---------- cards & type ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+@media(max-width:520px){.card{padding:16px}}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+h2.big{font-size:clamp(26px,5.4vw,38px);line-height:1.03;margin:0 0 8px;font-weight:700}
+h3.sec{font-size:20px;margin:26px 0 8px;font-weight:600}
+h3.sec:first-child{margin-top:0}
+.lede{font-size:17px;color:var(--ink-2);margin:0 0 4px}
+p{margin:0 0 12px}
+ul.bul{margin:0 0 14px;padding-left:0;list-style:none}
+ul.bul li{position:relative;padding-left:20px;margin-bottom:7px}
+ul.bul li::before{content:"";position:absolute;left:4px;top:.62em;width:7px;height:7px;background:var(--amber);border-radius:1px}
+.term{font-weight:600}
+.note{border-left:3px solid var(--teal);background:var(--teal-soft);padding:12px 14px;border-radius:0 var(--r) var(--r) 0;margin:0 0 14px;font-size:15px}
+.note b{font-family:"IBM Plex Sans Condensed",sans-serif}
+.formula{
+  font-family:"IBM Plex Mono",monospace;font-size:15px;background:var(--slate);color:#EFEDE4;
+  padding:12px 14px;border-radius:var(--r);margin:0 0 14px;overflow-x:auto;white-space:pre
+}
+.tbl-wrap{overflow-x:auto;margin:0 0 16px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:380px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line)}
+th{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line-2)}
+td:first-child{font-weight:600;white-space:nowrap}
+
+/* ---------- buttons ---------- */
+.btn{
+  font-family:"IBM Plex Sans Condensed",sans-serif;font-size:15px;font-weight:600;
+  background:var(--slate);color:#F3EFE4;border:1px solid var(--slate);border-radius:var(--r);
+  padding:11px 18px;cursor:pointer;transition:transform .1s,opacity .15s
+}
+.btn:hover{opacity:.88}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn.ghost:hover{background:rgba(22,32,43,.06);opacity:1}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.sm{padding:7px 12px;font-size:13px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+/* ---------- lesson list ---------- */
+.lesson-row{
+  display:flex;align-items:center;gap:14px;width:100%;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:8px;
+  cursor:pointer;text-align:left;color:inherit;font-family:inherit;font-size:16px;transition:border-color .15s,transform .1s
+}
+.lesson-row:hover{border-color:var(--line-2)}
+.lesson-row:active{transform:translateY(1px)}
+.lesson-row .idx{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:0 0 auto}
+.lesson-row .ttl{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;line-height:1.2;flex:1;min-width:0}
+.lesson-row .ttl small{display:block;font-family:"IBM Plex Serif",serif;font-weight:400;font-size:13px;color:var(--ink-3);margin-top:2px}
+.badge{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;padding:3px 7px;border-radius:2px;
+  border:1px solid var(--line-2);color:var(--ink-3);white-space:nowrap
+}
+.badge.ok{background:var(--teal-soft);border-color:var(--teal);color:var(--teal)}
+.badge.mid{background:var(--amber-soft);border-color:var(--amber);color:#8a6404}
+
+/* ---------- quiz ---------- */
+.qhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.qbar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-bottom:20px}
+.qbar i{display:block;height:100%;background:var(--slate);transition:width .3s}
+.qtype{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.qtext{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:clamp(19px,3.6vw,23px);line-height:1.25;font-weight:600;margin:0 0 18px}
+.opt{
+  display:flex;gap:12px;align-items:flex-start;width:100%;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--r);padding:13px 15px;margin-bottom:8px;
+  cursor:pointer;text-align:left;font-family:inherit;font-size:15.5px;line-height:1.4;color:inherit;transition:border-color .15s,background .15s
+}
+.opt:hover:not(:disabled){border-color:var(--line-2)}
+.opt .key{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:0 0 16px;padding-top:2px}
+.opt.correct{border-color:var(--teal);background:var(--teal-soft)}
+.opt.correct .key{color:var(--teal)}
+.opt.wrong{border-color:var(--red);background:var(--red-soft)}
+.opt.wrong .key{color:var(--red)}
+.opt:disabled{cursor:default}
+.opt.dim{opacity:.5}
+.tf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.match-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center;margin-bottom:9px}
+@media(max-width:520px){.match-row{grid-template-columns:1fr;gap:4px;margin-bottom:14px}}
+.match-row .lt{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:15px}
+select{
+  width:100%;font-family:"IBM Plex Serif",serif;font-size:14.5px;padding:9px 10px;
+  border:1px solid var(--line-2);border-radius:var(--r);background:var(--card);color:var(--ink)
+}
+select.ok{border-color:var(--teal);background:var(--teal-soft)}
+select.no{border-color:var(--red);background:var(--red-soft)}
+.verdict{
+  margin-top:16px;border:1px solid var(--line);border-left-width:3px;border-radius:0 var(--r) var(--r) 0;
+  padding:13px 15px;background:var(--card);font-size:15px
+}
+.verdict.y{border-left-color:var(--teal)}
+.verdict.n{border-left-color:var(--red)}
+.verdict h4{margin:0 0 5px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace;font-weight:600}
+.verdict.y h4{color:var(--teal)}
+.verdict.n h4{color:var(--red)}
+.verdict p{margin:0}
+
+/* ---------- control chart (signature) ---------- */
+.chart-card{background:var(--slate);border-radius:var(--r);padding:18px 18px 12px;color:#EFEDE4;border:1px solid var(--slate)}
+.chart-card .eyebrow{color:rgba(239,237,228,.55)}
+.chart-legend{display:flex;gap:16px;flex-wrap:wrap;font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:rgba(239,237,228,.6);margin-top:6px}
+.chart-legend i{display:inline-block;width:9px;height:9px;margin-right:5px;vertical-align:-1px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:18px}
+@media(max-width:520px){.stat-grid{grid-template-columns:1fr 1fr}}
+.stat{background:var(--card);padding:14px}
+.stat b{display:block;font-family:"IBM Plex Mono",monospace;font-size:24px;font-weight:600;line-height:1.1}
+.stat span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-family:"IBM Plex Mono",monospace}
+.empty{color:var(--ink-3);font-size:14.5px;font-style:italic}
+hr.rule{border:0;border-top:1px solid var(--line-2);margin:30px 0 22px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+.foot small{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);letter-spacing:.08em}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="brand" id="home-btn" aria-label="Etusivulle">
+      <span class="mark">σ</span>
+      <div><h1>Lean Six Sigma</h1><p>Green Belt · harjoitusohjelma</p></div>
+    </button>
+    <div class="hdr-right">
+      <button class="theme-btn" id="theme-toggle" type="button">Tumma tila</button>
+      <div class="hdr-stat"><b id="hdr-pct">0 %</b><span>Kurssi valmiina</span></div>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="rail" id="rail" aria-label="Vaiheet"></nav>
+    <main id="view"></main>
+  </div>
+</div>
+<script>
+const CURRICULUM=[
+{id:"ph0",code:"0",name:"Perusteet",tag:"Mitä LSS on ja miksi se toimii",lessons:[
+
+{id:"l01",title:"Lean, Six Sigma ja niiden ero",sub:"Hukka vs. vaihtelu",
+theory:[
+{t:"p",x:"Lean ja Six Sigma ovat kaksi eri alkuperää olevaa parannusmenetelmää, jotka on yhdistetty yhdeksi kokonaisuudeksi. Ne eivät ratkaise samaa ongelmaa."},
+{t:"h",x:"Lean: virtaus ja hukka"},
+{t:"p",x:"Lean on peräisin Toyotan tuotantojärjestelmästä. Sen kysymys on: <b>mikä tässä prosessissa ei tuota arvoa asiakkaalle?</b> Lean lyhentää läpimenoaikaa poistamalla hukkaa ja parantamalla virtausta. Työkalut ovat pääosin visuaalisia ja nopeita: arvovirtakuvaus, 5S, kanban, SMED, poka-yoke."},
+{t:"h",x:"Six Sigma: vaihtelu ja laatu"},
+{t:"p",x:"Six Sigma syntyi Motorolalla 1980-luvulla. Sen kysymys on: <b>miksi tulos vaihtelee?</b> Se pienentää vaihtelua ja virheitä datan ja tilastollisen päättelyn avulla. Nimi tulee tavoitteesta, jossa spesifikaatiorajan ja keskiarvon väliin mahtuu kuusi keskihajontaa."},
+{t:"note",x:"<b>Muistisääntö:</b> Lean poistaa sen, mitä ei tarvita. Six Sigma korjaa sen, mikä tarvitaan mutta ei toimi luotettavasti. Nopea prosessi, joka tuottaa virheitä, ei ole hyvä — eikä myöskään virheetön prosessi, jonka läpimeno on kolme viikkoa."},
+{t:"h",x:"DMAIC — parannuksen runko"},
+{t:"tbl",h:["Vaihe","Kysymys","Lopputulos"],r:[
+["Define","Mikä ongelma ja kenelle?","Hyväksytty projektisuunnitelma"],
+["Measure","Mikä on nykytila mitattuna?","Luotettava lähtötasomittaus"],
+["Analyze","Mikä on juurisyy?","Todennetut kriittiset x-tekijät"],
+["Improve","Mikä ratkaisu toimii?","Pilotoitu ja todennettu ratkaisu"],
+["Control","Miten pysyy?","Ohjaussuunnitelma ja luovutus"]]},
+{t:"p",x:"DMAIC on tarkoitettu <b>olemassa olevan</b> prosessin parantamiseen. Kun prosessia tai tuotetta ei vielä ole, käytetään DMADV/DFSS-runkoa (Define–Measure–Analyze–Design–Verify)."},
+{t:"h",x:"Y = f(x)"},
+{t:"p",x:"Six Sigman keskeinen ajatusmalli: tulos (Y) on syötteiden ja prosessimuuttujien (x) funktio. Y:tä ei voi hallita suoraan — sitä hallitaan hallitsemalla x-tekijöitä. Siksi Analyze-vaiheessa etsitään ne harvat x:t, jotka oikeasti selittävät Y:n vaihtelua."},
+{t:"f",x:"Y  =  f(x₁, x₂, x₃ … xₙ)\nY = tulos, seuraus, mitattava lopputulos\nx = syyt, prosessimuuttujat, joita voi säätää"}],
+q:[
+{k:"mc",q:"Prosessi tuottaa tilauksen keskimäärin 4 päivässä, mutta toimitusaika vaihtelee 1 ja 12 päivän välillä. Asiakkaat valittavat ennakoimattomuudesta. Kumpaan tämä osoittaa ensisijaisesti?",o:["Hukka — työtä tehdään turhaan","Vaihtelu — prosessi ei ole ennakoitava","Kapasiteettipula","Väärä hinnoittelu"],a:1,e:"Keskiarvo on kunnossa, mutta hajonta on suuri. Ennakoimattomuus on vaihteluongelma, joka on Six Sigman ydinaluetta. Lean-työkalut auttaisivat lyhentämään keskiarvoa, eivät kaventamaan hajontaa."},
+{k:"mc",q:"Mitä DMAIC-runko olettaa kohteestaan?",o:["Että prosessi on uusi ja suunnitteilla","Että prosessi on olemassa ja sitä parannetaan","Että prosessi lopetetaan","Että prosessista ei ole dataa"],a:1,e:"DMAIC parantaa olemassa olevaa prosessia. Uuden suunnitteluun käytetään DMADV/DFSS-runkoa."},
+{k:"tf",q:"Six Sigma keskittyy ensisijaisesti läpimenoajan lyhentämiseen ja Lean vaihtelun pienentämiseen.",a:false,e:"Toisin päin. Lean kohdistuu virtaukseen, läpimenoaikaan ja hukkaan; Six Sigma vaihteluun ja virheisiin."},
+{k:"mc",q:"Ilmaisu Y = f(x) tarkoittaa käytännössä, että…",o:["Y on aina lineaarinen x:n suhteen","tulosta parannetaan tunnistamalla ja hallitsemalla syytekijät","x on aina mitattava jatkuvalla asteikolla","Y voidaan asettaa suoraan tavoitearvoon"],a:1,e:"Y on seuraus. Sitä ei voi käskeä paremmaksi; on löydettävä ja säädettävä ne x-tekijät, jotka sitä ohjaavat."},
+{k:"match",q:"Yhdistä vaihe sen keskeiseen kysymykseen.",pairs:[["Define","Mikä ongelma ja kenelle?"],["Measure","Mikä on nykytila mitattuna?"],["Analyze","Mikä on juurisyy?"],["Control","Miten parannus pysyy?"]],e:"Improve vastaa kysymykseen 'mikä ratkaisu toimii'. Muut neljä menevät järjestyksessä D–M–A–C."},
+{k:"mc",q:"Tiimi haluaa aloittaa suoraan ratkaisusta, koska 'syy on kaikille selvä'. Mikä on suurin riski?",o:["Projekti valmistuu liian nopeasti","Ratkaistaan oire eikä juurisyytä, ja ongelma palaa","Data-analyysi vie liikaa aikaa","Asiakas ei ehdi kommentoida"],a:1,e:"Yleisin syy DMAIC-projektin epäonnistumiseen on hypätä Define- ja Analyze-vaiheiden yli. Ilman todennettua juurisyytä parannus ei kestä."}]},
+
+{id:"l02",title:"Sigma-taso, DPMO ja suorituskyky",sub:"Miten laatu ilmaistaan lukuna",
+theory:[
+{t:"p",x:"Six Sigma mittaa laatua virhetiheytenä suhteessa mahdollisuuksiin, ei prosenttina hyväksytyistä yksiköistä. Tämä tekee eri prosesseista vertailukelpoisia."},
+{t:"h",x:"Peruskäsitteet"},
+{t:"l",x:["<b>Vika (defect)</b> — yksittäinen poikkeama vaatimuksesta.","<b>Viallinen yksikkö (defective)</b> — yksikkö, jossa on vähintään yksi vika.","<b>Mahdollisuus (opportunity)</b> — kohta, jossa vika voi syntyä.","<b>DPU</b> = viat / yksiköt.","<b>DPMO</b> = viat miljoonaa mahdollisuutta kohti."]},
+{t:"f",x:"DPMO = (viat) / (yksiköt × mahdollisuudet) × 1 000 000"},
+{t:"h",x:"Sigma-taso"},
+{t:"tbl",h:["Sigma","DPMO","Saanto"],r:[["2σ","308 537","69,1 %"],["3σ","66 807","93,3 %"],["4σ","6 210","99,38 %"],["5σ","233","99,977 %"],["6σ","3,4","99,99966 %"]]},
+{t:"p",x:"Taulukko sisältää perinteisen <b>1,5 sigman siirtymän</b>: oletetaan, että prosessin keskiarvo ajelehtii pitkällä aikavälillä 1,5 keskihajontaa. Siksi 6σ vastaa 3,4 DPMO eikä teoreettista 0,002 DPMO."},
+{t:"h",x:"Läpivirtaussaanto"},
+{t:"p",x:"Yksinkertainen loppusaanto piilottaa korjaustyön. <b>FPY</b> (first pass yield) laskee vain kerralla oikein menneet. <b>RTY</b> (rolled throughput yield) kertoo todennäköisyyden, että yksikkö läpäisee koko monivaiheisen prosessin ilman yhtään korjausta."},
+{t:"f",x:"RTY = FPY₁ × FPY₂ × FPY₃ × … × FPYₙ\n\nEsim. 5 vaihetta à 95 %  →  0,95⁵ = 77,4 %"},
+{t:"note",x:"<b>Piilotehdas:</b> jos jokainen vaihe on 'melkein aina kunnossa', koko ketju voi silti epäonnistua joka neljännellä kerralla. RTY paljastaa korjaus- ja uusintatyön, jonka loppusaanto peittää."}],
+q:[
+{k:"mc",q:"200 laskua, kussakin 5 tarkistettavaa kenttää, ja virheitä löytyi 30. Mikä on DPMO?",o:["30 000","150 000","6 000","3 000"],a:0,e:"30 / (200 × 5) × 1 000 000 = 30 / 1000 × 1 000 000 = 30 000 DPMO. Tämä vastaa noin 3,4 sigman tasoa."},
+{k:"mc",q:"Prosessissa on 4 vaihetta, joiden FPY:t ovat 98 %, 95 %, 99 % ja 97 %. Mikä kuvaa RTY:tä parhaiten?",o:["Noin 99 %, koska heikoin vaihe on 95 %","Noin 89 %, koska saannot kertautuvat","Noin 97,25 %, koska lasketaan keskiarvo","Ei voida laskea ilman DPMO:ta"],a:1,e:"0,98 × 0,95 × 0,99 × 0,97 ≈ 0,894. Vaiheiden saannot kertautuvat, joten ketju on aina heikompi kuin heikoin yksittäinen vaihe."},
+{k:"tf",q:"Yksikkö, jossa on kolme vikaa, lasketaan kolmeksi viallisiksi yksiköiksi.",a:false,e:"Se on yksi viallinen yksikkö, jossa on kolme vikaa. Ero on olennainen: DPU ja DPMO lasketaan vioista, viallisten osuus yksiköistä."},
+{k:"mc",q:"Miksi 6σ vastaa taulukoissa 3,4 DPMO eikä 0,002 DPMO?",o:["Mittausvirheen takia","Koska mukana on oletettu 1,5σ:n pitkän aikavälin siirtymä","Koska normaalijakauma ei päde","Pyöristyssäännön takia"],a:1,e:"Perinteinen käytäntö olettaa keskiarvon ajelehtivan pitkällä aikavälillä 1,5 keskihajontaa, mikä heikentää lyhyen aikavälin teoreettista tasoa."},
+{k:"match",q:"Yhdistä tunnusluku sen määritelmään.",pairs:[["DPU","Viat jaettuna yksiköiden määrällä"],["DPMO","Viat miljoonaa mahdollisuutta kohti"],["FPY","Kerralla oikein läpäisseiden osuus yhdessä vaiheessa"],["RTY","Todennäköisyys läpäistä koko ketju ilman korjausta"]],e:"DPU ja DPMO mittaavat vikatiheyttä, FPY ja RTY läpivirtausta."},
+{k:"mc",q:"Loppusaanto on 99 %, mutta RTY on 78 %. Mitä tästä voi päätellä?",o:["Mittaus on virheellinen","Prosessissa tehdään paljon korjaus- ja uusintatyötä","Prosessi on 6σ-tasolla","Asiakas saa paljon viallisia tuotteita"],a:1,e:"Ero loppusaannon ja RTY:n välillä on piilotehdas: viat korjataan matkan varrella, joten asiakas ei näe niitä, mutta kustannus ja läpimenoaika kasvavat."}]},
+
+{id:"l03",title:"VOC, CTQ ja projektin valinta",sub:"Asiakastarpeesta mitattavaksi vaatimukseksi",
+theory:[
+{t:"p",x:"Six Sigma alkaa aina asiakkaasta. <b>VOC</b> (Voice of the Customer) on asiakkaan oma, usein epämääräinen ilmaisu tarpeesta. Sitä ei voi mitata sellaisenaan."},
+{t:"h",x:"VOC → CTQ"},
+{t:"p",x:"<b>CTQ</b> (Critical to Quality) on VOC:sta johdettu mitattava vaatimus, jolla on kohdearvo ja hyväksymisrajat. Muunnos etenee kolmessa askeleessa: asiakkaan ilmaus → tarve → mitattava vaatimus rajoineen."},
+{t:"tbl",h:["VOC (asiakas sanoo)","Tarve","CTQ (mitattava)"],r:[
+["\"Toimitus kestää ikuisuuden\"","Nopea toimitus","Toimitusaika ≤ 3 arkipäivää, 95 % tilauksista"],
+["\"Laskuissa on aina virheitä\"","Virheetön laskutus","Laskun virheprosentti ≤ 0,5 %"],
+["\"Puhelimessa jonottaa liian kauan\"","Nopea vastaus","Vastausaika ≤ 60 s, 90 % puheluista"]]},
+{t:"h",x:"Kolme ääntä"},
+{t:"l",x:["<b>VOC</b> — asiakkaan vaatimukset.","<b>VOB</b> (Voice of the Business) — liiketoiminnan vaatimukset: kustannus, kate, riski.","<b>VOP</b> (Voice of the Process) — mitä prosessi tosiasiassa tuottaa, datana."]},
+{t:"p",x:"Suorituskykyongelma on käytännössä ero VOC:n ja VOP:n välillä: asiakas vaatii yhtä, prosessi tuottaa toista."},
+{t:"h",x:"Kanon malli"},
+{t:"l",x:["<b>Perusvaatimukset</b> — oletetaan itsestään selviksi. Läsnäolo ei ilahduta, puute suututtaa.","<b>Suorituskykyvaatimukset</b> — mitä enemmän, sitä tyytyväisempi. Näistä asiakas yleensä puhuu.","<b>Innostavat</b> — odottamattomat, tuottavat ilahtumista. Puute ei haittaa, koska niitä ei osattu odottaa."]},
+{t:"note",x:"<b>Hyvä LSS-projekti:</b> ongelma on mitattava, syy on tuntematon, prosessi toistuu usein, rajaus on hallittavissa 3–6 kuukaudessa ja omistaja on nimetty. Jos ratkaisu tiedetään jo, kyseessä on toteutusprojekti — ei DMAIC-projekti."}],
+q:[
+{k:"mc",q:"Mikä seuraavista on kelvollinen CTQ?",o:["Asiakkaat haluavat parempaa palvelua","Reklamaatioiden käsittelyaika ≤ 5 arkipäivää 95 %:ssa tapauksista","Henkilöstön pitää olla ystävällisempää","Prosessi pitää digitalisoida"],a:1,e:"CTQ:lla on mitattava suure, kohdearvo ja hyväksymisraja. Muut ovat tarpeita tai ratkaisuehdotuksia."},
+{k:"mc",q:"Prosessin tuottama todellinen suoritustaso datana on nimeltään…",o:["VOC","VOB","VOP","CTQ"],a:2,e:"Voice of the Process. Ongelma on VOC:n ja VOP:n välinen kuilu."},
+{k:"tf",q:"Kanon mallissa perusvaatimuksen täyttäminen nostaa asiakastyytyväisyyttä voimakkaasti.",a:false,e:"Perusvaatimus ei ilahduta täytettynä — se vain estää tyytymättömyyden. Puuttuessaan se romahduttaa tyytyväisyyden."},
+{k:"mc",q:"Esimies ehdottaa projektiksi: 'Otetaan uusi CRM käyttöön, se korjaa myynnin ongelmat.' Miksi tämä ei sovi DMAIC-projektiksi?",o:["Aihe on liian pieni","Ratkaisu on jo päätetty, joten juurisyytä ei tutkita","CRM-järjestelmiä ei voi mitata","Projektilla ei ole asiakasta"],a:1,e:"Kun ratkaisu on lyöty lukkoon etukäteen, kyse on toteutusprojektista. DMAIC edellyttää, että syy on aluksi tuntematon."},
+{k:"match",q:"Yhdistä ääni sen sisältöön.",pairs:[["VOC","Asiakkaan vaatimukset ja odotukset"],["VOB","Kustannus-, kate- ja riskivaatimukset"],["VOP","Prosessin todellinen suorituskyky datana"],["CTQ","Mitattava vaatimus rajoineen"]],e:"Kolme ääntä ovat lähteitä; CTQ on niistä johdettu mittari."},
+{k:"mc",q:"Asiakas sanoo: 'En koskaan tiedä, missä tilaukseni menee.' Mikä CTQ tästä johdetaan parhaiten?",o:["Asiakastyytyväisyys > 4/5","Tilauksen tilatieto saatavilla ≤ 2 h tapahtumasta, 98 % tilauksista","Asiakaspalvelun henkilöstömäärä +2","Toimitusaika ≤ 3 päivää"],a:1,e:"Valitus koskee näkyvyyttä, ei nopeutta. CTQ:n pitää mitata juuri sitä asiaa, josta asiakas puhui."}]},
+
+{id:"l04",title:"Suorituskykymittarit: KPI, KRI ja mittariparadoksi",sub:"Mitä mitataan ja miten mittari ohjaa käyttäytymistä",
+theory:[
+{t:"p",x:"\"Mitä mitataan, sitä johdetaan.\" Valitut mittarit eivät vain kuvaa toimintaa — ne muuttavat sitä. Siksi CTQ ja x-mittarit valitaan yhtä huolella kuin itse ratkaisu."},
+{t:"h",x:"Tulosmittari ja ennakoiva mittari"},
+{t:"p",x:"<b>Lagging-mittari</b> (tulosmittari) kertoo, mitä jo tapahtui: kuukauden myynti, asiakastyytyväisyys, toimitettujen virheiden määrä. <b>Leading-mittari</b> (ennakoiva mittari) ennustaa tulosta ennen kuin se realisoituu: puheluun vastausnopeus ennustaa asiakastyytyväisyyttä, koulutuksen kattavuus ennustaa virhetasoa. DMAIC:ssa CTQ (Y) on tyypillisesti lagging, Analyze-vaiheessa löydetyt x-tekijät ovat leading."},
+{t:"h",x:"KPI ja KRI"},
+{t:"l",x:["<b>KPI (Key Performance Indicator)</b> — mittaa, kuinka hyvin tavoitetta kohti edetään.","<b>KRI (Key Risk Indicator)</b> — varoittaa riskin kasvamisesta ennen kuin se toteutuu vahinkona, esim. kasvava henkilöstön vaihtuvuus ennen laatuongelmaa."]},
+{t:"note",x:"<b>Mittariähky:</b> kymmenien mittarien seuranta hajottaa huomion. Tiimin kannattaa pitää aktiivisesti näkyvillä 3–5 avainmittaria kerrallaan."},
+{t:"h",x:"Mittariparadoksi"},
+{t:"p",x:"Kun mittarista tulee tavoite sinänsä, se lakkaa kuvaamasta todellisuutta luotettavasti. Jos puhelinpalvelussa palkitaan vain lyhyestä puhelun kestosta, agentit alkavat katkoa puheluita ennenaikaisesti — mittari paranee, asiakas kärsii. Siksi tehokkuusmittari tasapainotetaan aina laatu- tai asiakasmittarilla."},
+{t:"tbl",h:["Tehokkuusmittari","Tasapainottava laatumittari"],r:[
+["Käsittelyaika / puhelu","Kerralla ratkaistujen osuus (FCR)"],
+["Käsiteltyjen tapausten määrä / työntekijä","Virhe- tai reklamaatioprosentti"],
+["Toimitusnopeus","Toimitustarkkuus, palautusprosentti"]]},
+{t:"h",x:"Mittari DMAIC-vaiheissa"},
+{t:"p",x:"Define valitsee CTQ:n (Y). Measure mittaa lähtötason luotettavasti. Analyze etsii x-tekijät, jotka ennustavat Y:tä. Improve parantaa x-tekijöitä. Control seuraa molempia: leading-x:iä usein ja tiheästi, lagging-Y:tä harvemmin — poikkeamaan ehditään reagoida ennen kuin lopputulos kärsii."}],
+q:[
+{k:"mc",q:"Puhelinpalvelussa halutaan ennustaa asiakastyytyväisyyttä ennen kuukausittaista tyytyväisyyskyselyä. Mikä sopisi parhaiten ennakoivaksi (leading) mittariksi?",o:["Kuukauden NPS-tulos","Puheluun vastausnopeus ja kerralla ratkaisun osuus","Vuositason liikevaihto","Edellisen vuoden reklamaatiomäärä"],a:1,e:"Vastausnopeus ja kerralla ratkaisu tapahtuvat ennen kuin asiakas antaa palautetta, ja ne ennustavat tyytyväisyyttä. NPS ja reklamaatiot ovat itse lagging-tuloksia."},
+{k:"mc",q:"Mitä ero KPI:n ja KRI:n välillä ensisijaisesti kuvaa?",o:["KPI mittaa laatua, KRI kustannusta","KPI ohjaa tavoitteen suuntaan, KRI varoittaa kasvavasta riskistä","KPI on aina jatkuvaa dataa, KRI attribuuttidataa","Ei eroa, termit ovat synonyymejä"],a:1,e:"KPI kuvaa etenemistä tavoitteeseen, KRI ennakoi ongelmaa ennen kuin se realisoituu."},
+{k:"tf",q:"Jos mittarista tehdään ainoa palkitsemisperuste, ihmiset alkavat helposti optimoida mittaria eivätkä varsinaista tavoitetta.",a:true,e:"Tämä on mittariparadoksin ydin: mittari irtoaa siitä todellisuudesta, jota sen piti kuvata."},
+{k:"mc",q:"Miksi tehokkuusmittari (esim. käsittelyaika) kannattaa aina tasapainottaa laatumittarilla?",o:["Koska tehokkuutta ei voi mitata luotettavasti","Koska pelkkä tehokkuusmittari houkuttelee oikaisemaan laadun kustannuksella","Koska laatumittarit ovat halvempia kerätä","Koska CTQ vaatii aina kaksi mittaria"],a:1,e:"Ilman paria tehokkuuden parantaminen voi tapahtua laadun kustannuksella, mikä ei näy tehokkuusluvussa."},
+{k:"match",q:"Yhdistä käsite määritelmäänsä.",pairs:[["Lagging-mittari","Kertoo, mitä jo tapahtui"],["Leading-mittari","Ennustaa tulosta etukäteen"],["KPI","Mittaa etenemistä tavoitteeseen"],["KRI","Varoittaa kasvavasta riskistä"]],e:"Lagging/leading kuvaavat ajoitusta, KPI/KRI mittarin tarkoitusta."},
+{k:"mc",q:"Control-vaiheessa seurataan sekä x- että Y-mittaria. Miksi x:ää (leading) kannattaa seurata tiheämmin kuin Y:tä (lagging)?",o:["Koska Y on aina kalliimpi mitata","Koska poikkeamaan ehditään reagoida ennen kuin se näkyy lopputuloksessa","Koska Y-mittari ei sovi ohjauskortille","Koska x-data on aina attribuuttidataa"],a:1,e:"Leading-mittarin poikkeama antaa varoitusajan: siihen voidaan puuttua ennen kuin se ehtii heikentää lopputulosta."}]}
+]},
+
+{id:"ph1",code:"D",name:"Define",tag:"Ongelman rajaus ja projektin perustaminen",lessons:[
+
+{id:"l11",title:"Project charter",sub:"Ongelmalauseke, tavoite ja rajaus",
+theory:[
+{t:"p",x:"Charter on projektin sopimus: se kertoo, mitä ratkaistaan, miksi, kuka ja mihin mennessä. Se on elävä dokumentti, jota tarkennetaan Measure-vaiheen datan perusteella."},
+{t:"h",x:"Charterin osat"},
+{t:"l",x:["<b>Business case</b> — miksi tämä nyt ja mitä maksaa jos ei tehdä.","<b>Ongelmalauseke</b> — mitä, missä, milloin, kuinka paljon.","<b>Tavoitelauseke</b> — mittari, lähtötaso, tavoitetaso, määräaika.","<b>Rajaus</b> — mikä on mukana ja mikä nimenomaisesti ei.","<b>Tiimi ja roolit</b> — sponsori, omistaja, belt, jäsenet.","<b>Aikataulu</b> — DMAIC-vaiheiden porttipäivät.","<b>Hyödyt</b> — kova (kate, kustannus) ja pehmeä (riski, tyytyväisyys)."]},
+{t:"h",x:"Ongelmalauseke"},
+{t:"p",x:"Hyvä ongelmalauseke on <b>neutraali</b>: se ei sisällä syytä, syyllistä eikä ratkaisua. Se sisältää mittarin, suuruuden, ajanjakson ja vaikutuksen."},
+{t:"note",x:"<b>Huono:</b> \"Varasto on tehoton, koska työntekijät eivät noudata ohjeita — tarvitsemme uuden WMS-järjestelmän.\"<br><b>Hyvä:</b> \"Q1–Q2/2026 keräilyn virheprosentti oli 3,8 % (tavoite 1,0 %), mikä aiheutti 412 hyvityslähetystä ja noin 96 000 € lisäkustannuksen.\""},
+{t:"h",x:"Tavoite SMART-muodossa"},
+{t:"p",x:"Tavoite kirjoitetaan muodossa: <b>vähennä/nosta [mittari] tasosta [lähtötaso] tasoon [tavoite] ajankohtaan [pvm] mennessä</b>. Tyypillinen tavoite on kaventaa kuilua 50–70 %, ei nollata sitä."},
+{t:"f",x:"S  Specific    — täsmällinen, yksi mittari\nM  Measurable  — lähtötaso ja tavoite lukuina\nA  Achievable  — realistinen resursseilla\nR  Relevant    — kytkeytyy liiketoimintatavoitteeseen\nT  Time-bound  — määräpäivä"}],
+q:[
+{k:"mc",q:"Mikä seuraavista kuuluu ongelmalausekkeeseen?",o:["Arvio juurisyystä","Ehdotettu ratkaisu","Mittari, suuruus, ajanjakso ja vaikutus","Vastuuhenkilön nimi"],a:2,e:"Ongelmalauseke kuvaa vain havaitun tilanteen faktoina. Syy selviää Analyze-vaiheessa ja ratkaisu Improve-vaiheessa."},
+{k:"tf",q:"Project charter lukitaan Define-vaiheen lopussa eikä sitä enää muuteta.",a:false,e:"Charter tarkentuu erityisesti Measure-vaiheen jälkeen, kun lähtötaso on mitattu luotettavasti. Muutokset hyväksyy sponsori."},
+{k:"mc",q:"'Parannetaan asiakastyytyväisyyttä merkittävästi mahdollisimman pian.' Mitkä SMART-kirjaimet puuttuvat selvimmin?",o:["S ja R","M ja T","A ja R","S ja A"],a:1,e:"Ei mitattavaa lähtö- eikä tavoitetasoa (M) eikä määräpäivää (T)."},
+{k:"mc",q:"Miksi rajaukseen kirjataan erikseen myös se, mikä EI kuulu projektiin?",o:["Dokumentointivaatimuksen takia","Estämään laajenemista ja selkeyttämään odotukset","Jotta sponsori voi delegoida","Jotta projekti näyttää suuremmalta"],a:1,e:"Nimenomainen ulosrajaus on tehokkain suoja scope creepiä vastaan ja tekee odotukset näkyviksi jo alussa."},
+{k:"match",q:"Yhdistä rooli sen tehtävään.",pairs:[["Sponsori (Champion)","Poistaa esteet, hyväksyy portit ja resurssit"],["Prosessinomistaja","Vastaa prosessista ja ottaa ratkaisun käyttöön"],["Green Belt","Vetää projektia oman työn ohessa"],["Master Black Belt","Valmentaa ja varmistaa menetelmän oikean käytön"]],e:"Green Belt vetää rajattua projektia osa-aikaisesti; Black Belt tekee sitä päätoimisesti ja Master Black Belt valmentaa."},
+{k:"mc",q:"Lähtötaso on 12 % ja teoreettinen ihanne 0 %. Mikä on tyypillisesti realistinen Green Belt -tavoite?",o:["0 %","10 %","4–6 %","Ei aseteta numeerista tavoitetta"],a:2,e:"Vakiintunut käytäntö on kaventaa kuilua noin 50–70 %. 12 %:sta se tarkoittaa noin 4–6 %:n tasoa."}]},
+
+{id:"l12",title:"SIPOC ja prosessin rajaaminen",sub:"Ylätason kuva ennen yksityiskohtia",
+theory:[
+{t:"p",x:"SIPOC on Define-vaiheen ylätason prosessikuva. Se tehdään ennen yksityiskohtaista prosessikarttaa, jotta tiimillä on yhteinen käsitys siitä, mistä prosessi alkaa ja mihin se päättyy."},
+{t:"tbl",h:["Kirjain","Sisältö"],r:[
+["S — Suppliers","Toimittajat, jotka tuottavat syötteet"],
+["I — Inputs","Syötteet: materiaali, tieto, tilaus, data"],
+["P — Process","4–7 ylätason vaihetta, ei yksityiskohtia"],
+["O — Outputs","Tuotokset, jotka prosessi luovuttaa"],
+["C — Customers","Vastaanottajat, sisäiset ja ulkoiset"]]},
+{t:"h",x:"Täyttöjärjestys"},
+{t:"p",x:"SIPOC kannattaa täyttää <b>ulkoa sisään</b>: määritä ensin prosessin alku- ja loppupiste, sitten O ja C (kenelle tuotetaan), sitten I ja S (mistä syötteet tulevat) ja vasta lopuksi P. Tämä estää juuttumisen prosessin sisäisiin yksityiskohtiin."},
+{t:"note",x:"Prosessivaiheita on 4–7. Jos niitä on 15, kyseessä ei ole enää SIPOC vaan prosessikartta — se tehdään Measure-vaiheessa."},
+{t:"h",x:"Sidosryhmäanalyysi"},
+{t:"p",x:"Rinnalla arvioidaan sidosryhmät kahdella akselilla: <b>vaikutusvalta</b> ja <b>kiinnostus</b>. Korkea vaikutusvalta + korkea kiinnostus = hallitse tiiviisti. Korkea vaikutusvalta + matala kiinnostus = pidä tyytyväisenä. Vastustuksen tunnistaminen etukäteen on halvempaa kuin sen kohtaaminen Improve-vaiheessa."},
+{t:"h",x:"CTQ-puu"},
+{t:"p",x:"CTQ-puu purkaa asiakastarpeen tasoittain mitattaviksi vaatimuksiksi: <b>tarve → laatuajuri → mitattava CTQ rajoineen</b>. Se on Define-vaiheen linkki VOC:n ja Measure-vaiheen mittarien välillä."}],
+q:[
+{k:"mc",q:"Missä järjestyksessä SIPOC kannattaa täyttää?",o:["S → I → P → O → C","P ensin, muut sen jälkeen","Rajat ensin, sitten O ja C, sitten I ja S, lopuksi P","C → S → P → I → O"],a:2,e:"Ulkoa sisään: asiakas ja tuotos määrittävät, mikä prosessissa on olennaista. Prosessivaiheet kirjataan viimeisenä."},
+{k:"tf",q:"SIPOC-kaavion prosessiosaan kirjataan kaikki prosessin vaiheet mahdollisimman tarkasti.",a:false,e:"SIPOC on ylätason kuva: 4–7 vaihetta. Yksityiskohtainen kuvaus kuuluu Measure-vaiheen prosessikarttaan."},
+{k:"mc",q:"Rekrytointiprosessin SIPOC:ssa 'hyväksytty työhakemus' on mikä elementti, kun tarkastellaan haastatteluvaihetta?",o:["Supplier","Input","Output","Customer"],a:1,e:"Se on syöte, jonka haastatteluvaihe vastaanottaa. Toimittaja (S) olisi hakijaseulonnasta vastaava taho."},
+{k:"mc",q:"Sidosryhmä on osastopäällikkö, jolla on suuri vaikutusvalta mutta vähäinen kiinnostus projektiin. Miten toimitaan?",o:["Jätetään huomiotta","Pidetään tyytyväisenä tiiviillä mutta kevyellä viestinnällä","Otetaan projektitiimin täysjäseneksi","Siirretään päätösvalta hänelle"],a:1,e:"Suuri vaikutusvalta ja matala kiinnostus = pidä tyytyväisenä. Ylikuormitus viestinnällä kääntyy helposti vastustukseksi, mutta täysi sivuuttaminen on riski."},
+{k:"match",q:"Yhdistä SIPOC-kirjain esimerkkiin verkkokaupan tilausprosessissa.",pairs:[["Supplier","Maksupalveluntarjoaja"],["Input","Asiakkaan tilaus"],["Output","Toimitettu paketti"],["Customer","Tilaaja"]],e:"Toimittaja tuottaa syötteen prosessiin; asiakas vastaanottaa tuotoksen."},
+{k:"mc",q:"Mikä on CTQ-puun tarkoitus?",o:["Kuvata prosessin vaiheet aikajärjestyksessä","Purkaa asiakastarve mitattaviksi vaatimuksiksi","Priorisoida ratkaisuvaihtoehdot","Osoittaa vikojen juurisyyt"],a:1,e:"CTQ-puu etenee tarpeesta laatuajurin kautta mitattavaan vaatimukseen rajoineen."}]},
+
+{id:"l13",title:"Hukan kahdeksan lajia",sub:"Mitä prosessissa ei kannata tehdä",
+theory:[
+{t:"p",x:"Lean jakaa työn kolmeen: <b>arvoa tuottava</b> (asiakas maksaisi siitä), <b>arvoa tuottamaton mutta välttämätön</b> (lakisääteinen tarkastus) ja <b>hukka</b> (poistettava). Tyypillisesti alle 10 % läpimenoajasta on aidosti arvoa tuottavaa."},
+{t:"h",x:"TIMWOODS"},
+{t:"tbl",h:["Laji","Tunnusmerkki"],r:[
+["Transport","Tarpeeton materiaalin tai dokumentin siirtely"],
+["Inventory","Varasto, keskeneräinen työ, käsittelyjono"],
+["Motion","Ihmisen tarpeeton liike, etsiminen, klikkailu"],
+["Waiting","Odotus hyväksynnälle, koneelle, tiedolle"],
+["Overproduction","Tuotetaan enemmän tai aikaisemmin kuin tarvitaan"],
+["Overprocessing","Tehdään tarkemmin tai enemmän kuin vaaditaan"],
+["Defects","Virheet, korjaus, uusintatyö, reklamaatiot"],
+["Skills","Osaamisen käyttämättä jättäminen"]]},
+{t:"note",x:"<b>Ylituotanto on pahin hukka</b>, koska se synnyttää muita: varastoa, siirtelyä, odotusta ja piileviä virheitä, jotka löydetään vasta myöhään."},
+{t:"h",x:"Kolme japanilaista termiä"},
+{t:"l",x:["<b>Muda</b> — hukka, arvoa tuottamaton työ.","<b>Mura</b> — epätasaisuus, vaihtelu kuormassa tai virtauksessa.","<b>Muri</b> — ylikuormitus, ihmisten tai koneiden liiallinen rasitus."]},
+{t:"p",x:"Muda on usein <i>seuraus</i> murasta ja murista. Pelkkä hukan poisto ilman kuorman tasaamista tuottaa lyhytaikaisen parannuksen, joka palautuu."}],
+q:[
+{k:"mc",q:"Hakemus odottaa 6 päivää esimiehen hyväksyntää, vaikka käsittely kestää 20 minuuttia. Mikä hukan laji?",o:["Overprocessing","Waiting","Transport","Motion"],a:1,e:"Odotus. Tämä on tyypillinen toimistoprosessin hukka: läpimenoajasta suurin osa on jonoa, ei työtä."},
+{k:"mc",q:"Raportissa lasketaan neljä desimaalia, vaikka päätöksentekoon riittää kokonaisluku. Mikä laji?",o:["Overproduction","Overprocessing","Defects","Inventory"],a:1,e:"Ylikäsittely: tehdään tarkemmin kuin asiakas vaatii. Ylituotanto olisi raportin tekeminen useammin kuin sitä tarvitaan."},
+{k:"tf",q:"Lakisääteinen tarkastus, josta asiakas ei maksaisi, luokitellaan aina poistettavaksi hukaksi.",a:false,e:"Se on arvoa tuottamatonta mutta välttämätöntä työtä. Sitä ei poisteta, mutta se pyritään tekemään mahdollisimman kevyesti."},
+{k:"match",q:"Yhdistä termi merkitykseen.",pairs:[["Muda","Hukka, arvoa tuottamaton työ"],["Mura","Epätasaisuus ja vaihtelu"],["Muri","Ylikuormitus"],["Gemba","Paikka, jossa työ oikeasti tehdään"]],e:"Gemba tarkoittaa 'todellista paikkaa' — parannustyö tehdään siellä, missä työ tapahtuu, ei neuvotteluhuoneessa."},
+{k:"mc",q:"Miksi ylituotantoa pidetään pahimpana hukkana?",o:["Se on kallein mitata","Se synnyttää muita hukkia: varastoa, siirtelyä ja myöhään löytyviä virheitä","Se on aina laiton","Se on ainoa, jota asiakas näkee"],a:1,e:"Liian aikaisin tai liikaa tuotettu työ kasautuu varastoksi, vaatii käsittelyä ja piilottaa virheet siihen asti, kunnes korjaus on kallista."},
+{k:"mc",q:"Työntekijä etsii oikeaa lomaketta viidestä eri kansiosta joka kerta. Mikä laji ja mikä työkalu auttaisi ensin?",o:["Motion — 5S","Inventory — kanban","Defects — poka-yoke","Waiting — SMED"],a:0,e:"Etsiminen on tarpeetonta liikettä. 5S kohdistuu juuri työpisteen järjestykseen ja siihen, että tarvittava löytyy ilman etsimistä."}]}
+]},
+
+{id:"ph2",code:"M",name:"Measure",tag:"Nykytilan luotettava mittaus",lessons:[
+
+{id:"l21",title:"Datatyypit ja otanta",sub:"Mitä mitataan ja kuinka paljon",
+theory:[
+{t:"h",x:"Datan tyypit"},
+{t:"l",x:["<b>Jatkuva (muuttuja)</b> — mitattava asteikko, jossa väliarvot ovat mielekkäitä: aika, paino, euro, pituus.","<b>Diskreetti (attribuutti)</b> — laskettava tai luokitteleva: kyllä/ei, hyväksytty/hylätty, vikatyyppi, kappalemäärä."]},
+{t:"p",x:"Jatkuva data on arvokkaampaa: se kertoo enemmän vähemmillä havainnoilla. Attribuuttidataa tarvitaan tyypillisesti moninkertainen määrä saman tarkkuuden saavuttamiseksi. Siksi mittaria kannattaa mahdollisuuksien mukaan muuttaa jatkuvaksi — 'myöhässä kyllä/ei' sijasta 'myöhästymä tunteina'."},
+{t:"h",x:"Mittausasteikot"},
+{t:"tbl",h:["Asteikko","Ominaisuus","Esimerkki"],r:[
+["Nominaali","Luokka ilman järjestystä","Vikatyyppi, osasto"],
+["Ordinaali","Järjestys, ei tasavälejä","Tyytyväisyys 1–5"],
+["Intervalli","Tasavälit, ei absoluuttista nollaa","Celsius-lämpötila"],
+["Suhde","Tasavälit ja absoluuttinen nolla","Aika, paino, euro"]]},
+{t:"h",x:"Otanta"},
+{t:"l",x:["<b>Satunnaisotanta</b> — jokaisella yksiköllä sama todennäköisyys tulla valituksi.","<b>Systemaattinen</b> — joka n:s yksikkö. Riski, jos prosessissa on samanjaksoinen sykli.","<b>Ositettu</b> — populaatio jaetaan ryhmiin (vuoro, linja, tuoteperhe) ja jokaisesta otetaan otos. Paras, kun ryhmien välillä epäillään eroa.","<b>Ryväsotanta</b> — valitaan kokonaisia ryhmiä, käytännöllinen mutta epätarkempi."]},
+{t:"note",x:"<b>Otoksen koko:</b> nyrkkisääntönä jatkuvalle datalle vähintään 30 havaintoa, attribuuttidatalle vähintään 100 — usein selvästi enemmän, jos vikataso on matala. Kaava jatkuvalle: n = (1,96 × s / Δ)², jossa s on arvioitu keskihajonta ja Δ haluttu tarkkuus."},
+{t:"h",x:"Operatiivinen määritelmä"},
+{t:"p",x:"Operatiivinen määritelmä kertoo yksiselitteisesti, <b>mitä mitataan, millä välineellä, kuka mittaa ja milloin mittaus alkaa ja päättyy</b>. Ilman sitä kaksi mittaajaa saa eri tuloksen samasta tapahtumasta. Esimerkiksi 'toimitusaika' voi tarkoittaa tilaushetkestä lähetykseen tai maksusta vastaanottoon."}],
+q:[
+{k:"mc",q:"Mikä seuraavista on jatkuvaa dataa?",o:["Vikatyyppi","Hyväksytty / hylätty","Käsittelyaika minuutteina","Osaston nimi"],a:2,e:"Aika on suhdeasteikollista jatkuvaa dataa. Muut ovat luokittelevia eli attribuuttidataa."},
+{k:"mc",q:"Miksi jatkuvaa dataa suositaan attribuuttidatan sijaan?",o:["Se on halvempaa kerätä","Sama tarkkuus saavutetaan huomattavasti pienemmällä otoksella","Se ei sisällä mittausvirhettä","Sitä ei tarvitse validoida"],a:1,e:"Jatkuva data sisältää enemmän informaatiota per havainto. Attribuuttidataa tarvitaan tyypillisesti moninkertaisesti."},
+{k:"mc",q:"Epäillään, että ilta- ja päivävuoron välillä on eroa virhetasossa. Mikä otantatapa sopii parhaiten?",o:["Systemaattinen otanta","Ositettu otanta","Ryväsotanta","Mukavuusotanta"],a:1,e:"Ositettu otanta: populaatio jaetaan vuoroihin ja kummastakin otetaan otos, jolloin ryhmien vertailu on mahdollista."},
+{k:"tf",q:"Operatiivinen määritelmä on tarpeen vain silloin, kun mittaaja vaihtuu.",a:false,e:"Se tarvitaan aina. Sama henkilö voi tulkita rajatapauksia eri tavalla eri päivinä, ja ilman määritelmää dataa ei voi verrata ajassa."},
+{k:"mc",q:"Systemaattisen otannan (joka 10. yksikkö) suurin riski on…",o:["Liian suuri otos","Osuminen prosessin omaan jaksolliseen sykliin","Ettei sitä voi tehdä koneellisesti","Ordinaalinen asteikko"],a:1,e:"Jos prosessissa on samanjaksoista syklisyyttä, systemaattinen otanta voi poimia aina saman kohdan sykliä ja vääristää tuloksen."},
+{k:"match",q:"Yhdistä asteikko esimerkkiin.",pairs:[["Nominaali","Vikatyyppi"],["Ordinaali","Tyytyväisyysarvio 1–5"],["Intervalli","Lämpötila celsiusasteina"],["Suhde","Käsittelyaika minuutteina"]],e:"Vain suhdeasteikolla on absoluuttinen nolla, joten vain siinä suhdeluvut (kaksi kertaa enemmän) ovat mielekkäitä."}]},
+
+{id:"l22",title:"Mittausjärjestelmän analyysi (MSA)",sub:"Voiko dataan luottaa?",
+theory:[
+{t:"p",x:"Ennen kuin dataa analysoidaan, on varmistettava että mittaus itsessään on luotettava. Havaittu vaihtelu on aina prosessin vaihtelun ja mittausjärjestelmän vaihtelun summa."},
+{t:"f",x:"σ²(havaittu) = σ²(prosessi) + σ²(mittaus)"},
+{t:"h",x:"Mittausjärjestelmän ominaisuudet"},
+{t:"l",x:["<b>Tarkkuus (accuracy / bias)</b> — osuvatko mittaukset oikeaan arvoon keskimäärin.","<b>Toistettavuus (repeatability)</b> — sama mittaaja, sama kappale, sama tulos. Vaihtelu välineessä.","<b>Uusittavuus (reproducibility)</b> — eri mittaajat, sama kappale, sama tulos. Vaihtelu ihmisissä ja tulkinnassa.","<b>Lineaarisuus</b> — pysyykö tarkkuus samana koko mittausalueella.","<b>Stabiilius</b> — pysyykö mittaus samana ajassa."]},
+{t:"h",x:"Gage R&R -hyväksymisrajat"},
+{t:"tbl",h:["%GRR kokonaisvaihtelusta","Tulkinta"],r:[
+["alle 10 %","Hyväksyttävä"],
+["10–30 %","Ehdollisesti hyväksyttävä; riippuu kriittisyydestä ja kustannuksesta"],
+["yli 30 %","Ei hyväksyttävä — korjattava ennen datan käyttöä"]]},
+{t:"p",x:"Lisäksi tarkastellaan <b>erottelukykyä (ndc, number of distinct categories)</b>: sen tulisi olla vähintään 5. Se kertoo, kuinka moneen eri luokkaan mittari kykenee erottelemaan kappaleet."},
+{t:"h",x:"Attribuuttidatan MSA"},
+{t:"p",x:"Kun mittaus on ihmisen tekemä luokittelu (hyväksytty/hylätty, reklamaation syykoodi), tehdään <b>attribuuttiyhtenevyysanalyysi</b>: useat arvioijat luokittelevat samat näytteet kahdesti sokkona. Arvioidaan yhtenevyys itsensä kanssa, muiden kanssa ja tunnetun oikean vastauksen kanssa. Yhtenevyyden mittarina käytetään usein Kappa-kerrointa; yli 0,75 pidetään hyvänä ja alle 0,4 heikkona."},
+{t:"note",x:"Jos toistettavuus on huono → ongelma on välineessä tai menetelmässä. Jos uusittavuus on huono → ongelma on ohjeistuksessa, koulutuksessa tai operatiivisessa määritelmässä."}],
+q:[
+{k:"mc",q:"Kaksi tarkastajaa luokittelee saman tuotteen eri tavalla. Mikä mittausjärjestelmän ominaisuus on heikko?",o:["Toistettavuus","Uusittavuus","Lineaarisuus","Stabiilius"],a:1,e:"Uusittavuus (reproducibility) koskee mittaajien välistä eroa. Yleisin korjaus on tarkempi operatiivinen määritelmä ja rajatapausten kalibrointi."},
+{k:"mc",q:"Gage R&R -tulos on 24 % kokonaisvaihtelusta. Mitä tehdään?",o:["Hyväksytään sellaisenaan","Ehdollisesti hyväksyttävä — päätetään kriittisyyden ja kustannuksen perusteella","Hylätään ehdottomasti","Kasvatetaan otoskokoa, jolloin luku laskee"],a:1,e:"10–30 % on harmaa alue. Ratkaisu riippuu mittauksen kriittisyydestä ja korjauksen kustannuksesta. Otoskoko ei muuta mittausjärjestelmän osuutta vaihtelusta."},
+{k:"tf",q:"Sama mittaaja mittaa saman kappaleen kolmesti ja saa kolme eri lukemaa. Tämä on uusittavuusongelma.",a:false,e:"Sama mittaaja ja sama kappale = toistettavuus (repeatability). Uusittavuus koskee eri mittaajien välistä eroa."},
+{k:"mc",q:"Havaittu vaihtelu on 100 yksikköä ja mittausjärjestelmän osuus 40 yksikköä. Mikä on suurin ongelma jatkoanalyysille?",o:["Otos on liian pieni","Osa havaitusta vaihtelusta on mittausta, ei prosessia — johtopäätökset voivat olla vääriä","Data on attribuuttidataa","Prosessi on liian hyvä"],a:1,e:"Kun mittausjärjestelmä tuottaa merkittävän osan vaihtelusta, prosessista tehdyt päätelmät voivat kohdistua olemattomiin eroihin."},
+{k:"match",q:"Yhdistä ominaisuus sen kysymykseen.",pairs:[["Toistettavuus","Saako sama mittaaja saman tuloksen?"],["Uusittavuus","Saavatko eri mittaajat saman tuloksen?"],["Bias","Osuuko mittaus oikeaan arvoon keskimäärin?"],["Stabiilius","Pysyykö mittaus samana ajan kuluessa?"]],e:"Toistettavuus ja uusittavuus muodostavat yhdessä Gage R&R:n."},
+{k:"mc",q:"Reklamaatioiden syykoodit merkitään käsin. Mikä MSA-menetelmä sopii?",o:["Gage R&R jatkuvalla datalla","Attribuuttiyhtenevyysanalyysi (Kappa)","Cpk-laskenta","Regressioanalyysi"],a:1,e:"Luokitteludata vaatii yhtenevyysanalyysin: arvioijat luokittelevat samat tapaukset toistetusti ja verrataan yhtenevyyttä keskenään ja oikeaan vastaukseen."}]},
+
+{id:"l23",title:"Jakauma ja kuvaileva statistiikka",sub:"Keskiluku, hajonta ja muoto",
+theory:[
+{t:"h",x:"Kolme asiaa, jotka datasta katsotaan"},
+{t:"l",x:["<b>Keskiluku</b> — keskiarvo, mediaani, moodi.","<b>Hajonta</b> — keskihajonta, varianssi, vaihteluväli, kvartiiliväli.","<b>Muoto</b> — vinous, huipukkuus, moninapaisuus, poikkeavat havainnot."]},
+{t:"p",x:"Pelkkä keskiarvo ei riitä koskaan. Kaksi prosessia voi tuottaa saman keskiarvon täysin eri hajonnalla — ja asiakas kokee eron."},
+{t:"note",x:"<b>Vinossa jakaumassa mediaani kuvaa tyypillistä arvoa paremmin kuin keskiarvo.</b> Käsittelyajat ja odotusajat ovat lähes aina oikealle vinoja: muutama erittäin pitkä tapaus vetää keskiarvon ylös."},
+{t:"h",x:"Normaalijakauma"},
+{t:"f",x:"±1σ  ≈ 68,3 % havainnoista\n±2σ  ≈ 95,4 %\n±3σ  ≈ 99,73 %\n±6σ  ≈ 99,9999998 %"},
+{t:"p",x:"Normaalisuus ei ole itsetarkoitus, mutta moni testi ja suorituskykylaskenta olettaa sen. Normaalisuus testataan esimerkiksi Anderson–Darling-testillä: jos <b>p > 0,05</b>, dataa voidaan pitää normaalina."},
+{t:"h",x:"Graafiset työkalut"},
+{t:"tbl",h:["Kuvaaja","Kertoo"],r:[
+["Histogrammi","Jakauman muoto ja keskittyminen"],
+["Laatikkojanakuvio","Mediaani, kvartiilit, poikkeavat havainnot, ryhmien vertailu"],
+["Aikasarja / run chart","Muuttuuko prosessi ajassa"],
+["Hajontakuvio","Kahden muuttujan välinen yhteys"]]},
+{t:"p",x:"<b>Katso data aina aikajärjestyksessä ensin.</b> Histogrammi hukkaa aikaulottuvuuden: siitä ei näe, onko prosessi ajautunut tai muuttunut kesken jakson."}],
+q:[
+{k:"mc",q:"Käsittelyaikojen keskiarvo on 42 min ja mediaani 28 min. Mitä tästä päätellään?",o:["Jakauma on symmetrinen","Jakauma on oikealle vino: muutama pitkä tapaus nostaa keskiarvoa","Data on virheellistä","Keskihajonta on nolla"],a:1,e:"Keskiarvo > mediaani viittaa oikealle vinoon jakaumaan. Palveluprosesseissa tämä on tyypillistä."},
+{k:"mc",q:"Kahdella prosessilla on sama keskiarvo, mutta A:n keskihajonta on 2 ja B:n 8. Kumpi tuottaa todennäköisemmin spesifikaatiorajojen ulkopuolisia yksiköitä?",o:["A","B","Yhtä todennäköisesti","Ei voida päätellä"],a:1,e:"Suurempi hajonta levittää jakauman leveämmälle, jolloin suurempi osa osuu rajojen ulkopuolelle vaikka keskiarvo olisi kohdallaan."},
+{k:"tf",q:"Anderson–Darling-testissä p-arvo 0,32 tarkoittaa, että data poikkeaa merkitsevästi normaalijakaumasta.",a:false,e:"Päinvastoin. Nollahypoteesi on 'data on normaalia'. p = 0,32 > 0,05, joten nollahypoteesia ei hylätä ja dataa voidaan käsitellä normaalina."},
+{k:"mc",q:"Miksi data katsotaan ensin aikasarjana eikä histogrammina?",o:["Aikasarja on helpompi piirtää","Histogrammi hukkaa aikaulottuvuuden eikä paljasta muutosta tai ajautumista","Histogrammi vaatii normaalijakauman","Aikasarja ei vaadi otoskokoa"],a:1,e:"Histogrammiin kasattu data voi näyttää siistiltä, vaikka prosessi olisi siirtynyt kesken jakson. Aikajärjestys paljastaa tason muutokset ja trendit."},
+{k:"match",q:"Yhdistä kuvaaja siihen, mitä se ensisijaisesti näyttää.",pairs:[["Histogrammi","Jakauman muoto"],["Laatikkojanakuvio","Ryhmien vertailu ja poikkeavat havainnot"],["Aikasarjakuvio","Muutos ajassa"],["Hajontakuvio","Kahden muuttujan yhteys"]],e:"Työkalu valitaan kysymyksen mukaan, ei tottumuksen."},
+{k:"mc",q:"Havaintoja on 200 ja niiden keskihajonta on 5. Mille välille noin 95 % havainnoista osuu, jos jakauma on normaali ja keskiarvo 50?",o:["45–55","40–60","35–65","48–52"],a:1,e:"±2σ kattaa noin 95,4 % havainnoista: 50 ± 10 eli 40–60."}]},
+
+{id:"l24",title:"Prosessin suorituskyky: Cp, Cpk, Pp, Ppk",sub:"Vaihtelun suhde asiakkaan rajoihin",
+theory:[
+{t:"p",x:"Suorituskykyindeksit vertaavat prosessin vaihtelua <b>asiakkaan asettamiin spesifikaatiorajoihin</b> (USL, LSL). Ne eivät kerro mitään ohjausrajoista, jotka lasketaan prosessin omasta datasta."},
+{t:"h",x:"Cp ja Cpk"},
+{t:"f",x:"Cp  = (USL − LSL) / (6σ)\n\nCpk = min[ (USL − x̄) / 3σ ,  (x̄ − LSL) / 3σ ]"},
+{t:"l",x:["<b>Cp</b> mittaa vain <b>leveyttä</b>: mahtuuko jakauma rajojen väliin, jos se olisi keskellä.","<b>Cpk</b> ottaa huomioon myös <b>sijainnin</b>: kuinka lähellä lähempää rajaa keskiarvo on.","Jos Cp = Cpk, prosessi on täsmälleen keskitetty. Cpk on aina ≤ Cp."]},
+{t:"tbl",h:["Cpk","Tulkinta"],r:[["< 1,00","Ei kykenevä, tuottaa virheitä"],["1,00","Rajatapaus, ±3σ täyttää rajat täsmälleen"],["1,33","Yleinen minimivaatimus teollisuudessa"],["1,67","Hyvä"],["2,00","6σ-taso"]]},
+{t:"h",x:"Cp/Cpk vs. Pp/Ppk"},
+{t:"p",x:"<b>Cp ja Cpk</b> kuvaavat <i>lyhyen aikavälin</i> suorituskykyä ja käyttävät ryhmien sisäistä hajontaa — mihin prosessi kykenee parhaimmillaan. <b>Pp ja Ppk</b> kuvaavat <i>pitkän aikavälin</i> todellista suoritusta ja käyttävät kokonaishajontaa."},
+{t:"note",x:"<b>Suuri ero Cpk:n ja Ppk:n välillä on tärkeä signaali:</b> prosessi kykenisi hyvään tulokseen, mutta ajautuu tai siirtyy ajan myötä. Silloin ongelma on ohjauksessa ja stabiiliudessa, ei koneen tai menetelmän kyvyssä."},
+{t:"p",x:"<b>Järjestys on ehdoton:</b> suorituskykyä ei lasketa prosessista, joka ei ole tilastollisesti ohjauksessa. Epästabiilin prosessin Cpk ennustaa tulevaisuutta väärin, koska prosessin jakauma ei pysy samana."}],
+q:[
+{k:"mc",q:"Cp = 1,80 mutta Cpk = 0,90. Mitä tästä seuraa ensisijaisesti?",o:["Vaihtelua pitää pienentää","Prosessi on siirtynyt pois keskeltä — keskiarvo pitää keskittää","Spesifikaatiorajoja pitää löysentää","Prosessi on kykenemätön riippumatta säädöistä"],a:1,e:"Cp on hyvä, joten hajonta mahtuu rajojen väliin. Ero Cp:n ja Cpk:n välillä johtuu keskityksestä: säätämällä keskiarvo keskelle Cpk nousee lähelle Cp:tä."},
+{k:"mc",q:"USL = 110, LSL = 90, keskiarvo = 100 ja σ = 2,5. Mikä on Cp?",o:["1,00","1,33","2,00","0,75"],a:1,e:"(110 − 90) / (6 × 2,5) = 20 / 15 = 1,33."},
+{k:"tf",q:"Cpk voi olla suurempi kuin Cp.",a:false,e:"Cpk on aina korkeintaan yhtä suuri kuin Cp. Ne ovat yhtä suuret vain täydellisesti keskitetyssä prosessissa."},
+{k:"mc",q:"Cpk = 1,55 mutta Ppk = 0,85. Mitä tämä kertoo?",o:["Mittausjärjestelmä on rikki","Prosessi kykenee hyvään tulokseen, mutta ajautuu pitkällä aikavälillä","Spesifikaatiorajat ovat väärin","Otos on liian pieni"],a:1,e:"Lyhyen aikavälin kyky on hyvä, mutta pitkän aikavälin suoritus heikko. Kyse on stabiiliudesta ja ohjauksesta, ei koneen kyvystä."},
+{k:"mc",q:"Miksi suorituskykyä ei saa laskea prosessista, joka ei ole tilastollisesti ohjauksessa?",o:["Laskenta ei ole matemaattisesti mahdollista","Tulos ei ennusta tulevaa, koska jakauma ei pysy samana","Cpk vaatii aina attribuuttidataa","Ohjausrajat puuttuvat"],a:1,e:"Suorituskykyindeksi on ennuste. Epästabiilissa prosessissa keskiarvo ja hajonta muuttuvat, jolloin ennuste ei päde."},
+{k:"match",q:"Yhdistä indeksi sen sisältöön.",pairs:[["Cp","Lyhyen aikavälin potentiaali, vain leveys"],["Cpk","Lyhyen aikavälin kyky, huomioi keskityksen"],["Pp","Pitkän aikavälin potentiaali"],["Ppk","Pitkän aikavälin todellinen suoritus"]],e:"C-indeksit käyttävät ryhmien sisäistä hajontaa, P-indeksit kokonaishajontaa."}]}
+]},
+{id:"ph3",code:"A",name:"Analyze",tag:"Juurisyyn tunnistus ja todentaminen",lessons:[
+
+{id:"l31",title:"Juurisyyanalyysin perustyökalut",sub:"Pareto, Ishikawa ja 5 × miksi",
+theory:[
+{t:"p",x:"Analyze-vaiheessa edetään kahdessa askeleessa: ensin <b>tuotetaan</b> mahdollisia syitä, sitten <b>karsitaan</b> ne datalla. Ideointityökalut eivät todista mitään — ne tuottavat hypoteeseja testattavaksi."},
+{t:"h",x:"Pareto-analyysi"},
+{t:"p",x:"Pareto-kuvaaja järjestää vikaluokat suuruusjärjestykseen ja lisää kumulatiivisen käyrän. Taustalla on 80/20-periaate: pieni osa syistä selittää suuren osan seurauksista. Pareto kohdistaa työn sinne, missä vaikutus on suurin."},
+{t:"note",x:"Pareto kannattaa piirtää useammalla mittayksiköllä. Yleisin vika ei ole välttämättä kallein: 400 pientä pakkausvirhettä voi maksaa vähemmän kuin 12 väärin toimitettua konetta. Piirrä sekä kappalemäärä että kustannus."},
+{t:"h",x:"Ishikawa eli kalanruotokaavio"},
+{t:"p",x:"Syyt ryhmitellään pääluokkiin, jotta ideointi ei jää yhteen näkökulmaan. Tuotannossa käytetään <b>6M</b>-jakoa: Man, Machine, Material, Method, Measurement, Mother Nature (ympäristö). Palveluprosesseissa käytetään usein <b>4P</b>: People, Process, Policies, Place."},
+{t:"h",x:"5 × miksi"},
+{t:"p",x:"Kysytään 'miksi' toistuvasti, kunnes päädytään syyhyn, johon voidaan vaikuttaa järjestelmätasolla. Viisi on ohje, ei sääntö. Ketju pysähtyy oikeaan kohtaan, kun syyn korjaaminen estäisi ongelman toistumisen."},
+{t:"f",x:"Lasku lähti myöhässä.\n→ Miksi? Hyväksyntä puuttui.\n→ Miksi? Hyväksyjä oli lomalla.\n→ Miksi? Sijaista ei ollut nimetty.\n→ Miksi? Lomasijaisuuksista ei ole käytäntöä.\n→ Miksi? Prosessia ei ole dokumentoitu.  ← järjestelmätason syy"},
+{t:"note",x:"Jos ketju päättyy henkilöön ('työntekijä unohti'), se on pysähtynyt liian aikaisin. Jatka kysymällä, mikä järjestelmässä salli unohduksen johtaa virheeseen."},
+{t:"h",x:"5 × miksi ja Ishikawa yhdessä"},
+{t:"p",x:"Käytännössä Ishikawa tuottaa syykandidaatit leveydeltä ja 5 × miksi porautuu kussakin haarassa syvemmälle. Lopputulos on lista testattavia hypoteeseja, jotka viedään dataan."}],
+q:[
+{k:"mc",q:"Pareto-kuvaajassa kolme ensimmäistä luokkaa kattaa 78 % vioista. Mitä tämä tarkoittaa käytännössä?",o:["Muut luokat voidaan poistaa datasta","Työ kannattaa kohdistaa ensin näihin kolmeen","Prosessi on tilastollisesti ohjauksessa","Juurisyy on löydetty"],a:1,e:"Pareto priorisoi kohteen, mutta ei kerro syytä. Juurisyy selvitetään vasta valitulle luokalle."},
+{k:"mc",q:"Miksi Pareto kannattaa piirtää sekä kappalemäärällä että kustannuksella?",o:["Kaavio näyttää paremmalta","Yleisin vika ei ole aina kallein","Kustannusdataa vaaditaan aina","Kumulatiivinen käyrä ei muuten toimi"],a:1,e:"Priorisointi muuttuu mittayksikön mukana. Harvinainen mutta kallis vika voi olla tärkein kohde."},
+{k:"tf",q:"Ishikawa-kaavio osoittaa, mikä syy on todellinen juurisyy.",a:false,e:"Ishikawa on ideointityökalu: se tuottaa hypoteeseja. Todentaminen vaatii dataa ja tilastollista testausta."},
+{k:"mc",q:"5 × miksi -ketju päättyy toteamukseen 'työntekijä unohti tarkistaa'. Mitä pitäisi tehdä?",o:["Hyväksyä tulos ja kouluttaa työntekijä","Jatkaa kysymistä: mikä järjestelmässä salli unohduksen johtaa virheeseen","Aloittaa alusta toisesta ongelmasta","Siirtyä suoraan Improve-vaiheeseen"],a:1,e:"Henkilöön päättyvä ketju on kesken. Kestävä ratkaisu kohdistuu järjestelmään, esimerkiksi virheenestoon (poka-yoke)."},
+{k:"match",q:"Yhdistä 6M-luokka esimerkkiin.",pairs:[["Man","Perehdytyksen puute"],["Machine","Kalibroimaton laite"],["Method","Epäselvä työohje"],["Measurement","Tarkastajien erilainen tulkinta"]],e:"Material tarkoittaisi raaka-aineen vaihtelua ja Mother Nature ympäristöolosuhteita, kuten lämpötilaa tai kosteutta."},
+{k:"mc",q:"Missä järjestyksessä Analyze-vaihe etenee?",o:["Testataan hypoteesit, sitten ideoidaan syitä","Ideoidaan syyt, karsitaan ne datalla, todennetaan tilastollisesti","Valitaan ratkaisu ja perustellaan se datalla","Lasketaan Cpk, sitten piirretään Pareto"],a:1,e:"Ensin leveys (ideointi), sitten karsinta datalla ja lopuksi todentaminen. Ratkaisu tulee vasta Improve-vaiheessa."}]},
+
+{id:"l32",title:"Hypoteesitestauksen logiikka",sub:"H₀, p-arvo ja virhetyypit",
+theory:[
+{t:"p",x:"Hypoteesitestaus vastaa kysymykseen: <b>onko havaittu ero todellinen vai voisiko se selittyä satunnaisvaihtelulla?</b>"},
+{t:"h",x:"Kaksi hypoteesia"},
+{t:"l",x:["<b>H₀ (nollahypoteesi)</b> — ei eroa, ei vaikutusta, ryhmät samanlaisia. Tämä on oletus, jota testataan.","<b>H₁ (vaihtoehtoinen)</b> — ero on olemassa. Tämä on se, mitä yleensä halutaan osoittaa."]},
+{t:"h",x:"p-arvo"},
+{t:"p",x:"p-arvo on todennäköisyys havaita vähintään näin suuri ero, <b>jos H₀ olisi tosi</b>. Se ei ole todennäköisyys sille, että H₀ on tosi."},
+{t:"f",x:"p ≤ α  →  hylätään H₀ (ero on tilastollisesti merkitsevä)\np >  α  →  H₀:aa ei hylätä (näyttö ei riitä)\n\nTavallisesti α = 0,05"},
+{t:"note",x:"<b>Muistisääntö:</b> \"If p is low, H₀ must go.\" H₀:n hylkäämättä jättäminen ei ole todiste siitä, että eroa ei ole — se voi tarkoittaa myös liian pientä otosta."},
+{t:"h",x:"Kaksi virhetyyppiä"},
+{t:"tbl",h:["","H₀ on tosi","H₀ on epätosi"],r:[
+["Hylätään H₀","Tyypin I virhe (α) — väärä hälytys","Oikea päätös (voima 1−β)"],
+["Ei hylätä H₀","Oikea päätös","Tyypin II virhe (β) — jää huomaamatta"]]},
+{t:"p",x:"<b>Voima</b> (power, 1−β) on todennäköisyys havaita todellinen ero. Tavoitteena pidetään yleensä vähintään 0,80. Voimaa kasvatetaan suuremmalla otoksella, pienemmällä hajonnalla tai suuremmalla havaittavalla erolla."},
+{t:"h",x:"Käytännön merkitsevyys"},
+{t:"p",x:"Suuri otos tekee mitättömänkin eron tilastollisesti merkitseväksi. Aina on kysyttävä erikseen, onko ero <b>käytännössä</b> merkittävä: 0,3 sekunnin parannus käsittelyajassa voi olla p < 0,001 ja silti täysin arvoton."}],
+q:[
+{k:"mc",q:"Testin p-arvo on 0,03 ja α = 0,05. Mikä on johtopäätös?",o:["H₀ hyväksytään todeksi","H₀ hylätään; ero on tilastollisesti merkitsevä","Otos on liian pieni","Ero on käytännössä merkittävä"],a:1,e:"p ≤ α johtaa H₀:n hylkäämiseen. Käytännön merkittävyys on erillinen kysymys, jota p-arvo ei ratkaise."},
+{k:"mc",q:"Mitä p-arvo tarkalleen kertoo?",o:["Todennäköisyyden, että H₀ on tosi","Todennäköisyyden havaita vähintään näin suuri ero, jos H₀ olisi tosi","Vaikutuksen suuruuden","Otoksen edustavuuden"],a:1,e:"p-arvo on ehdollinen todennäköisyys havainnolle olettaen H₀. Se ei ole hypoteesin todennäköisyys eikä vaikutuksen koko."},
+{k:"tf",q:"Tyypin II virhe tarkoittaa, että todetaan ero, jota ei todellisuudessa ole.",a:false,e:"Se on tyypin I virhe (väärä hälytys). Tyypin II virhe on todellisen eron jääminen havaitsematta."},
+{k:"mc",q:"Testi ei löydä eroa (p = 0,42), vaikka prosessiomistaja on varma erosta. Mikä on todennäköisin tekninen syy?",o:["α on väärin valittu","Otos on liian pieni, jolloin testin voima on matala","H₀ on aina tosi","Data on jatkuvaa"],a:1,e:"Matala voima (1−β) tarkoittaa, ettei testi kykene havaitsemaan olemassa olevaa eroa. Yleisin syy on riittämätön otoskoko."},
+{k:"mc",q:"Otos on 50 000 havaintoa ja ero ryhmien välillä on 0,2 sekuntia, p < 0,001. Miten toimitaan?",o:["Toteutetaan muutos, koska tulos on merkitsevä","Arvioidaan erikseen, onko 0,2 sekuntia käytännössä merkittävä","Kasvatetaan otosta","Vaihdetaan α arvoon 0,01"],a:1,e:"Suuri otos tekee pienestäkin erosta tilastollisesti merkitsevän. Päätös vaatii arvion käytännön ja taloudellisen merkityksen kannalta."},
+{k:"match",q:"Yhdistä käsite määritelmään.",pairs:[["α","Riski hylätä H₀ vaikka se on tosi"],["β","Riski jättää todellinen ero havaitsematta"],["Voima (1−β)","Todennäköisyys havaita todellinen ero"],["H₀","Oletus, että eroa ei ole"]],e:"α asetetaan etukäteen (yleensä 0,05), β riippuu otoskoosta, hajonnasta ja eron suuruudesta."}]},
+
+{id:"l33",title:"Oikean testin valinta",sub:"t-testi, ANOVA, khiin neliö, regressio",
+theory:[
+{t:"p",x:"Testi valitaan kolmen kysymyksen perusteella: <b>millaista dataa X on, millaista dataa Y on, ja montako ryhmää vertaillaan.</b>"},
+{t:"tbl",h:["Tilanne","Testi"],r:[
+["Yksi ryhmä vs. tavoitearvo (jatkuva)","1-otoksen t-testi"],
+["Kaksi riippumatonta ryhmää (jatkuva)","2-otoksen t-testi"],
+["Sama kohde ennen/jälkeen (jatkuva)","Parittainen t-testi"],
+["Kolme tai useampi ryhmä (jatkuva)","ANOVA"],
+["Hajontojen vertailu","F-testi / Levene / Bartlett"],
+["Ei-normaali data, 2 ryhmää","Mann–Whitney"],
+["Ei-normaali data, 3+ ryhmää","Kruskal–Wallis"],
+["Kaksi luokitteluperustetta (attribuutti)","Khiin neliö -riippumattomuustesti"],
+["Kahden osuuden vertailu","2-proportion test"],
+["Jatkuva X ja jatkuva Y","Korrelaatio ja regressio"]]},
+{t:"h",x:"ANOVA"},
+{t:"p",x:"ANOVA vastaa kysymykseen: onko <b>ainakin yksi</b> ryhmä erilainen. Se ei kerro mikä. Siihen tarvitaan jälkitesti (esimerkiksi Tukey). Useiden erillisten t-testien tekeminen kolmelle tai useammalle ryhmälle kasvattaa väärän hälytyksen riskiä — siksi ANOVA."},
+{t:"h",x:"Korrelaatio ja regressio"},
+{t:"l",x:["<b>Korrelaatiokerroin r</b> vaihtelee välillä −1…+1 ja mittaa lineaarisen yhteyden voimakkuutta ja suuntaa.","<b>Selitysaste R²</b> kertoo, kuinka suuren osan Y:n vaihtelusta malli selittää.","<b>Regressio</b> tuottaa yhtälön, jolla Y:tä voidaan ennustaa X:n avulla."]},
+{t:"note",x:"<b>Korrelaatio ei ole syy-yhteys.</b> Kaksi muuttujaa voi korreloida kolmannen, mittaamattoman tekijän takia. Syy-yhteys osoitetaan luotettavimmin kokeella, jossa X:ää muutetaan hallitusti (DOE)."},
+{t:"p",x:"Hajontakuvio kannattaa piirtää aina ennen korrelaatiokertoimen laskemista: r voi olla lähellä nollaa, vaikka muuttujien välillä olisi vahva kaareva yhteys."}],
+q:[
+{k:"mc",q:"Verrataan kolmen eri toimipisteen keskimääräisiä käsittelyaikoja. Data on jatkuvaa ja normaalia. Mikä testi?",o:["Khiin neliö","2-otoksen t-testi","ANOVA","Mann–Whitney"],a:2,e:"Kolme tai useampi ryhmä ja jatkuva vaste → ANOVA. Erilliset t-testit kasvattaisivat tyypin I virheen kokonaisriskiä."},
+{k:"mc",q:"Samoilta 30 henkilöltä mitataan käsittelyaika ennen ja jälkeen koulutuksen. Mikä testi?",o:["2-otoksen t-testi","Parittainen t-testi","Khiin neliö","ANOVA"],a:1,e:"Havainnot ovat pareittain samoilta kohteilta, joten parittainen t-testi poistaa yksilöiden välisen vaihtelun ja on herkempi."},
+{k:"mc",q:"Halutaan tietää, riippuuko vikatyyppi (4 luokkaa) tuotantolinjasta (3 linjaa). Mikä testi?",o:["ANOVA","Khiin neliö -riippumattomuustesti","Regressio","Parittainen t-testi"],a:1,e:"Molemmat muuttujat ovat luokittelevia, joten käytetään khiin neliö -testiä ristiintaulukolle."},
+{k:"tf",q:"ANOVA kertoo, mikä ryhmistä poikkeaa muista.",a:false,e:"ANOVA kertoo vain, että ainakin yksi ryhmä poikkeaa. Erot paikannetaan jälkitestillä, kuten Tukeyn testillä."},
+{k:"mc",q:"R² = 0,64. Mitä se tarkoittaa?",o:["64 % havainnoista on oikein","Malli selittää 64 % Y:n vaihtelusta","Korrelaatio on 0,64","Virhemarginaali on 36 %"],a:1,e:"R² on selitysaste. Korrelaatiokerroin r olisi tässä noin 0,8 (√0,64)."},
+{k:"match",q:"Yhdistä tilanne testiin.",pairs:[["Kaksi riippumatonta ryhmää, jatkuva data","2-otoksen t-testi"],["Kolme ryhmää, jatkuva data","ANOVA"],["Kaksi luokittelumuuttujaa","Khiin neliö"],["Ei-normaali data, kaksi ryhmää","Mann–Whitney"]],e:"Valinta perustuu datatyyppiin, ryhmien määrään ja jakaumaoletuksen täyttymiseen."}]},
+
+{id:"l34",title:"FMEA",sub:"Riskien tunnistus ja priorisointi",
+theory:[
+{t:"p",x:"FMEA (Failure Mode and Effects Analysis) on järjestelmällinen tapa tunnistaa mahdolliset vikaantumistavat ennen kuin ne toteutuvat, ja priorisoida ne riskin mukaan."},
+{t:"h",x:"Kolme arviota, asteikko 1–10"},
+{t:"l",x:["<b>S — Severity</b>, vaikutuksen vakavuus asiakkaalle. 10 = vaarallinen tai kriittinen.","<b>O — Occurrence</b>, esiintymisen todennäköisyys. 10 = tapahtuu jatkuvasti.","<b>D — Detection</b>, havaitsemisen vaikeus. <b>10 = ei havaita lainkaan</b> ennen asiakasta."]},
+{t:"f",x:"RPN = S × O × D          (1 … 1000)"},
+{t:"note",x:"<b>Detection-asteikko on käänteinen:</b> korkea luku tarkoittaa huonoa havaitsemiskykyä. Tämä on FMEA:n yleisin virhelähde."},
+{t:"h",x:"Priorisointi"},
+{t:"p",x:"RPN ei ole ainoa peruste. <b>Korkea vakavuus (S ≥ 9) käsitellään aina</b>, vaikka RPN jäisi matalaksi harvinaisuuden takia. Sama RPN voi syntyä hyvin erilaisista yhdistelmistä: 9 × 2 × 5 = 90 ja 2 × 9 × 5 = 90, mutta ensimmäinen on selvästi vaarallisempi."},
+{t:"h",x:"Toimenpiteiden vaikutus"},
+{t:"tbl",h:["Toimenpide","Vaikuttaa"],r:[
+["Juurisyyn poisto, virheenesto","Occurrence laskee"],
+["Suunnittelumuutos, vaikutuksen lieventäminen","Severity laskee"],
+["Tarkastus, hälytys, automaattinen validointi","Detection laskee (parempi havaitseminen)"]]},
+{t:"p",x:"Ensisijainen tavoite on aina laskea <b>Occurrence</b> eli estää vika syntymästä. Tarkastuksen lisääminen parantaa vain havaitsemista eikä poista ongelmaa — se on kallein ja heikoin keino."},
+{t:"p",x:"FMEA aloitetaan Measure- tai Analyze-vaiheessa ja päivitetään Improve- ja Control-vaiheissa. Se on elävä dokumentti, ei kertaluontoinen harjoitus."}],
+q:[
+{k:"mc",q:"S = 8, O = 3, D = 6. Mikä on RPN?",o:["17","144","288","48"],a:1,e:"8 × 3 × 6 = 144."},
+{k:"mc",q:"Mitä Detection-arvo 10 tarkoittaa?",o:["Vika havaitaan aina heti","Vikaa ei käytännössä havaita ennen asiakasta","Vika on erittäin vakava","Vika esiintyy jatkuvasti"],a:1,e:"Detection-asteikko on käänteinen: 10 tarkoittaa, ettei nykyisillä keinoilla havaita vikaa ennen kuin se on jo asiakkaalla."},
+{k:"tf",q:"Toimenpiteet kannattaa kohdistaa aina korkeimman RPN:n riviin riippumatta siitä, mistä luvut koostuvat.",a:false,e:"Korkea vakavuus (S ≥ 9) käsitellään aina, vaikka RPN olisi matala. Sama RPN voi syntyä hyvin erilaisista ja eri tavoin vaarallisista yhdistelmistä."},
+{k:"mc",q:"Tiimi lisää prosessiin ylimääräisen tarkastusvaiheen. Mihin FMEA-lukuun tämä ensisijaisesti vaikuttaa?",o:["Severity","Occurrence","Detection","Ei mihinkään"],a:2,e:"Tarkastus parantaa havaitsemista eli laskee Detection-lukua. Vian syntymistä se ei estä, joten Occurrence pysyy ennallaan."},
+{k:"mc",q:"Mikä toimenpide on vaikuttavuudeltaan paras?",o:["Lisätään tarkastuspiste","Estetään vian syntyminen virheenestolla","Lisätään koulutusta","Lisätään hälytys järjestelmään"],a:1,e:"Occurrence-luvun laskeminen poistaa ongelman lähteen. Havaitsemisen parantaminen käsittelee vain seurauksia ja tuottaa jatkuvaa lisätyötä."},
+{k:"match",q:"Yhdistä kirjain sen kysymykseen.",pairs:[["Severity","Kuinka paha seuraus asiakkaalle on?"],["Occurrence","Kuinka usein tämä tapahtuu?"],["Detection","Kuinka todennäköisesti tämä jää huomaamatta?"],["RPN","Kolmen arvion tulo, priorisointiluku"]],e:"S ja O kuvaavat riskin suuruutta, D nykyisen ohjauksen kykyä pysäyttää vika."}]}
+]},
+
+{id:"ph4",code:"I",name:"Improve",tag:"Ratkaisujen kehitys, testaus ja pilotointi",lessons:[
+
+{id:"l41",title:"Ratkaisujen tuottaminen ja valinta",sub:"Ideoista perusteltuun päätökseen",
+theory:[
+{t:"p",x:"Improve-vaihe alkaa vasta, kun juurisyy on todennettu. Jokaisen ratkaisun on kytkeydyttävä johonkin todennettuun x-tekijään; muuten kyse on arvauksesta."},
+{t:"h",x:"Ideointi"},
+{t:"l",x:["<b>Brainstorming</b> — määrä ennen laatua, arviointi vasta lopuksi.","<b>Brainwriting / 6-3-5</b> — kirjallinen ideointi, joka estää dominoivien puhujien vaikutuksen.","<b>SCAMPER</b> — systemaattinen muunteluohjeisto: korvaa, yhdistä, muokkaa, poista, järjestä uudelleen.","<b>Benchmarking</b> — miten sama ongelma on ratkaistu muualla."]},
+{t:"h",x:"Valinta"},
+{t:"p",x:"Ratkaisut arvioidaan kahdella akselilla: <b>vaikutus</b> ja <b>toteutuksen vaiva</b>. Nelikentästä poimitaan ensin suuri vaikutus / pieni vaiva (quick wins) ja sen jälkeen suuri vaikutus / suuri vaiva (strategiset hankkeet)."},
+{t:"tbl",h:["Menetelmä","Käyttö"],r:[
+["Vaikutus–vaiva-matriisi","Nopea karsinta, quick winsien tunnistus"],
+["Painotettu pisteytysmatriisi","Kriteerit painotetaan ja pisteytetään numeerisesti"],
+["Pugh-matriisi","Vaihtoehtoja verrataan nykytilaan (+ / 0 / −)"],
+["Kustannus-hyötyanalyysi","Investointipäätös ja takaisinmaksuaika"]]},
+{t:"note",x:"Ratkaisu ei ole valmis ennen kuin sen <b>riskit</b> on arvioitu. Käytännössä tämä tarkoittaa FMEA:n päivittämistä uudelle prosessille: uusi ratkaisu tuo lähes aina uusia vikaantumistapoja."},
+{t:"h",x:"Muutosvastarinta"},
+{t:"p",x:"Tekninen ratkaisu epäonnistuu useimmiten sosiaalisista syistä. Prosessia päivittäin tekevät ihmiset osallistetaan ratkaisun suunnitteluun, ei vasta käyttöönottoon. Osallistuminen suunnitteluvaiheessa on tehokkain yksittäinen keino vastustuksen ehkäisyyn."}],
+q:[
+{k:"mc",q:"Milloin Improve-vaihe saa alkaa?",o:["Kun charter on hyväksytty","Kun mittausjärjestelmä on validoitu","Kun juurisyy on todennettu datalla","Kun sponsori pyytää tuloksia"],a:2,e:"Ratkaisujen kehittäminen ennen todennettua juurisyytä johtaa oireiden hoitoon ja ongelman palaamiseen."},
+{k:"mc",q:"Ratkaisulla on suuri vaikutus ja pieni toteutusvaiva. Mikä sen asema on?",o:["Quick win, toteutetaan ensin","Strateginen hanke, vaatii erillisen projektin","Hylätään","Siirretään Control-vaiheeseen"],a:0,e:"Suuri vaikutus ja pieni vaiva on nelikentän paras lohko: toteutetaan välittömästi ja saadaan näyttöä projektin arvosta."},
+{k:"tf",q:"Kun ratkaisu on valittu, FMEA:ta ei tarvitse enää päivittää.",a:false,e:"Uusi prosessi tuo uusia vikaantumistapoja. FMEA päivitetään ratkaisulle ennen käyttöönottoa."},
+{k:"mc",q:"Mikä on tehokkain yksittäinen keino ehkäistä muutosvastarintaa?",o:["Kattava tiedotus käyttöönoton yhteydessä","Prosessia tekevien osallistaminen jo ratkaisun suunnitteluun","Sponsorin määräys","Bonusjärjestelmä"],a:1,e:"Osallistuminen suunnitteluvaiheessa tuottaa sekä paremman ratkaisun että omistajuuden. Pelkkä tiedotus jälkikäteen tulee liian myöhään."},
+{k:"match",q:"Yhdistä valintamenetelmä sen ideaan.",pairs:[["Vaikutus–vaiva-matriisi","Nopea karsinta nelikentässä"],["Painotettu pisteytysmatriisi","Kriteerit painotetaan ja pisteytetään"],["Pugh-matriisi","Vertailu nykytilaan merkein + / 0 / −"],["Kustannus-hyötyanalyysi","Takaisinmaksun arviointi"]],e:"Kevyt menetelmä ensin, raskaampi vasta kärkiehdokkaille."},
+{k:"mc",q:"Tiimi ehdottaa ratkaisua, joka ei kytkeydy mihinkään Analyze-vaiheessa todennettuun x-tekijään. Miten toimitaan?",o:["Toteutetaan, jos se on halpa","Palautetaan perusteltavaksi: ilman kytköstä juurisyyhyn se on arvaus","Siirretään Control-vaiheeseen","Lisätään charteriin"],a:1,e:"Jokaisen ratkaisun pitää kohdistua todennettuun syyhyn. Muuten vaikutusta ei voi ennustaa eikä todentaa."}]},
+
+{id:"l42",title:"Koesuunnittelu (DOE)",sub:"Syy-yhteyden todentaminen kokeella",
+theory:[
+{t:"p",x:"DOE (Design of Experiments) on ainoa menetelmä, joka osoittaa <b>syy-seuraussuhteen</b>: tekijöitä muutetaan hallitusti ja mitataan vaikutus vasteeseen."},
+{t:"h",x:"Peruskäsitteet"},
+{t:"l",x:["<b>Faktori</b> — tekijä, jota säädetään (lämpötila, paine, menetelmä).","<b>Taso</b> — faktorin arvo kokeessa, tyypillisesti matala (−) ja korkea (+).","<b>Vaste</b> — mitattava tulos, Y.","<b>Päävaikutus</b> — yhden faktorin oma vaikutus vasteeseen.","<b>Yhdysvaikutus</b> — kahden faktorin yhteisvaikutus, jota ei näe erikseen tutkimalla."]},
+{t:"h",x:"Miksi ei yksi tekijä kerrallaan"},
+{t:"p",x:"OFAT-lähestymistapa (one factor at a time) on tehottomampi ja <b>täysin sokea yhdysvaikutuksille</b>. Faktoriaalinen koe muuttaa useaa tekijää samanaikaisesti suunnitellun matriisin mukaan ja tuottaa siksi enemmän tietoa vähemmillä ajoilla."},
+{t:"f",x:"Täysi faktorikoe:  ajojen määrä = 2^k\n\nk = 2  →  4 ajoa\nk = 3  →  8 ajoa\nk = 4  → 16 ajoa\nk = 5  → 32 ajoa"},
+{t:"h",x:"Osittaisfaktorikoe"},
+{t:"p",x:"Kun faktoreita on paljon, tehdään <b>osittaisfaktorikoe</b> (esim. 2^(5−1) = 16 ajoa). Se säästää ajoja mutta sekoittaa osan vaikutuksista keskenään (confounding). Sitä käytetään seulontaan: karsitaan monesta faktorista muutama merkittävä, jotka tutkitaan sen jälkeen tarkemmin."},
+{t:"note",x:"<b>Kolme perusperiaatetta:</b> satunnaistaminen (poistaa systemaattisen harhan), toisto (arvioi kokeen omaa vaihtelua) ja lohkotus (eristää tunnetun häiriötekijän, kuten vuoron tai erän, vaikutuksen)."},
+{t:"h",x:"Yhdysvaikutuksen tunnistaminen"},
+{t:"p",x:"Yhdysvaikutuskuvaajassa piirretään vasteen keskiarvo faktorin A tasoilla erikseen faktorin B kummallakin tasolla. <b>Yhdensuuntaiset viivat = ei yhdysvaikutusta. Risteävät tai eri jyrkkyyksiset viivat = yhdysvaikutus.</b>"}],
+q:[
+{k:"mc",q:"Täysi faktorikoe neljällä faktorilla kahdella tasolla. Montako ajoa ilman toistoja?",o:["8","16","32","24"],a:1,e:"2⁴ = 16 ajoa."},
+{k:"mc",q:"Mikä on OFAT-lähestymistavan keskeisin heikkous?",o:["Se vaatii liikaa faktoreita","Se ei havaitse yhdysvaikutuksia","Se vaatii normaalijakauman","Sitä ei voi satunnaistaa"],a:1,e:"Yksi tekijä kerrallaan -kokeilu ei paljasta, että kahden tekijän yhdistelmä käyttäytyy eri tavalla kuin tekijät erikseen."},
+{k:"tf",q:"Yhdysvaikutuskuvaajan yhdensuuntaiset viivat osoittavat voimakasta yhdysvaikutusta.",a:false,e:"Päinvastoin: yhdensuuntaiset viivat tarkoittavat, ettei yhdysvaikutusta ole. Risteävät viivat osoittavat yhdysvaikutuksen."},
+{k:"mc",q:"Mikä on satunnaistamisen tarkoitus kokeessa?",o:["Vähentää ajojen määrää","Estää tuntemattomien systemaattisten tekijöiden sekoittuminen tuloksiin","Parantaa normaalisuutta","Lisätä yhdysvaikutuksia"],a:1,e:"Satunnaistaminen jakaa tuntemattomien häiriötekijöiden vaikutuksen tasaisesti, jolloin ne eivät korreloi faktorien kanssa."},
+{k:"mc",q:"Faktoreita on 7 ja aikaa vähän. Mikä lähestymistapa?",o:["Täysi faktorikoe, 128 ajoa","Osittaisfaktorikoe seulontaan, sitten tarkempi koe merkittäville","OFAT","Ei tehdä koetta lainkaan"],a:1,e:"Seulontakokeella karsitaan monesta faktorista muutama merkittävä. Hinta on vaikutusten osittainen sekoittuminen, mikä on seulontavaiheessa hyväksyttävää."},
+{k:"match",q:"Yhdistä periaate sen tehtävään.",pairs:[["Satunnaistaminen","Poistaa tuntemattoman systemaattisen harhan"],["Toisto","Arvioi kokeen omaa satunnaisvaihtelua"],["Lohkotus","Eristää tunnetun häiriötekijän vaikutuksen"],["Faktoriaalisuus","Paljastaa yhdysvaikutukset"]],e:"Kolme ensimmäistä ovat Fisherin klassiset koesuunnittelun periaatteet."}]},
+
+{id:"l43",title:"Lean-ratkaisut ja virtaus",sub:"5S, imuohjaus, SMED, poka-yoke",
+theory:[
+{t:"h",x:"5S"},
+{t:"p",x:"Työpisteen järjestyksen menetelmä: <b>Sortteeraus</b> (poista tarpeeton), <b>Systematisointi</b> (paikka kaikelle), <b>Siivous</b>, <b>Standardointi</b> (sama tapa kaikilla) ja <b>Seuranta</b> (ylläpito ja auditointi). Viides S on se, joka useimmiten epäonnistuu — ilman auditointia työpiste palautuu ennalleen muutamassa kuukaudessa."},
+{t:"h",x:"Imuohjaus ja kanban"},
+{t:"p",x:"Työntöohjauksessa tuotetaan ennusteen perusteella, mikä kasvattaa varastoa. <b>Imuohjauksessa</b> uutta työtä aloitetaan vasta, kun seuraava vaihe on valmis ottamaan sen vastaan. <b>Kanban</b> on signaali, joka käynnistää täydennyksen. Keskeneräisen työn rajoittaminen (WIP-raja) lyhentää läpimenoaikaa suoraan."},
+{t:"h",x:"Littlen laki"},
+{t:"f",x:"Läpimenoaika = KET / Läpäisyteho\n\nEsim. 40 keskeneräistä hakemusta, 8 hakemusta/päivä\n→ läpimenoaika = 5 päivää"},
+{t:"p",x:"Littlen laki osoittaa, miksi jonon lyhentäminen on nopein tapa lyhentää läpimenoaikaa: ilman kapasiteetin lisäämistä riittää, että keskeneräistä työtä on vähemmän."},
+{t:"h",x:"Tahtiaika"},
+{t:"f",x:"Tahtiaika = käytettävissä oleva työaika / asiakaskysyntä\n\nEsim. 450 min / 90 kpl = 5 min/kpl"},
+{t:"p",x:"Tahtiaika on kysynnän rytmi. Jos vaiheen sykliaika ylittää tahtiajan, siitä muodostuu pullonkaula."},
+{t:"h",x:"SMED ja poka-yoke"},
+{t:"l",x:["<b>SMED</b> lyhentää asetusaikaa erottamalla sisäiset asetukset (kone seisoo) ulkoisista (voi tehdä käynnin aikana) ja siirtämällä mahdollisimman paljon sisäisistä ulkoisiksi. Lyhyt asetusaika mahdollistaa pienet eräkoot.","<b>Poka-yoke</b> on virheenesto: prosessi suunnitellaan niin, ettei virhettä voi tehdä tai se havaitaan välittömästi. Esimerkiksi liitin, joka menee vain oikein päin, tai lomake, joka ei lähetä ilman pakollista kenttää."]},
+{t:"note",x:"Poka-yoke on FMEA:n kannalta arvokkain toimenpide, koska se laskee Occurrence-lukua eikä vain paranna havaitsemista."}],
+q:[
+{k:"mc",q:"Keskeneräisiä hakemuksia on 60 ja käsittelyteho 12 kpl/päivä. Mikä on läpimenoaika Littlen lain mukaan?",o:["5 päivää","12 päivää","0,2 päivää","72 päivää"],a:0,e:"60 / 12 = 5 päivää. Jonon puolittaminen puolittaisi läpimenoajan ilman kapasiteetin lisäystä."},
+{k:"mc",q:"Käytettävissä 480 min/vrk ja kysyntä 120 kpl. Mikä on tahtiaika?",o:["4 min/kpl","2 min/kpl","8 min/kpl","0,25 min/kpl"],a:0,e:"480 / 120 = 4 minuuttia kappaletta kohden. Vaihe, jonka sykliaika ylittää 4 min, on pullonkaula."},
+{k:"tf",q:"SMED:n ydin on siirtää mahdollisimman paljon sisäisiä asetuksia ulkoisiksi.",a:true,e:"Sisäinen asetus vaatii koneen pysäytyksen, ulkoinen ei. Siirto ulkoiseksi lyhentää seisokkia ja mahdollistaa pienemmät eräkoot."},
+{k:"mc",q:"Mikä seuraavista on poka-yoke?",o:["Viikoittainen laatuauditointi","Lomake, joka ei lähde ilman pakollista kenttää","Kuukausiraportti virheistä","Lisäkoulutus"],a:1,e:"Poka-yoke estää virheen syntymisen rakenteellisesti. Auditoinnit ja raportit havaitsevat virheen vasta jälkikäteen."},
+{k:"mc",q:"Mikä 5S:n vaihe epäonnistuu useimmin?",o:["Sortteeraus","Siivous","Seuranta eli ylläpito","Systematisointi"],a:2,e:"Ilman auditointia ja rutiinia työpiste palautuu ennalleen. Neljä ensimmäistä S:ää ovat projekti, viides on toimintatapa."},
+{k:"match",q:"Yhdistä työkalu sen kohteeseen.",pairs:[["5S","Työpisteen järjestys ja etsimisen poisto"],["Kanban","Työn aloituksen ohjaus imulla"],["SMED","Asetusajan lyhentäminen"],["Poka-yoke","Virheen syntymisen estäminen"]],e:"5S ja SMED kohdistuvat aikaan, kanban virtaukseen ja poka-yoke laatuun."}]},
+
+{id:"l44",title:"Pilotointi ja käyttöönoton suunnittelu",sub:"PDCA pienessä mittakaavassa ennen laajaa käyttöönottoa",
+theory:[
+{t:"p",x:"Todennettua ratkaisua ei viedä suoraan koko organisaatioon. <b>Pilotointi</b> testaa ratkaisun rajatussa, hallitussa mittakaavassa, jotta virheet ja yllätykset löytyvät halvalla ennen laajaa käyttöönottoa."},
+{t:"h",x:"Pilotin suunnittelun osat"},
+{t:"l",x:["<b>Kohde</b> — edustava mutta rajattu: yksi tiimi, linja tai alue, ei koko organisaatio.","<b>Kesto ja mittarit</b> — sama CTQ kuin charterissa, ennalta sovittu tavoiteraja ja aikaikkuna.","<b>Resurssit ja tuki</b> — tiimi on tavoitettavissa pilotin ajan ongelmatilanteissa.","<b>Poistumiskriteeri</b> — ennalta sovittu raja, jolloin pilotti keskeytetään hallitusti."]},
+{t:"h",x:"PDCA pilotoinnin runkona"},
+{t:"p",x:"<b>Plan</b> — suunnittele koe ja mittarit. <b>Do</b> — toteuta pienessä mittakaavassa. <b>Check</b> — vertaa tuloksia sekä tavoitteeseen että alkuperäiseen lähtötasoon. <b>Act</b> — vakiinnuta, säädä ja aja kierros uudelleen, tai hylkää ja palaa ratkaisuvaihtoehtoihin. Yksi PDCA-kierros riittää harvoin ensimmäisellä yrityksellä."},
+{t:"note",x:"Pilotin onnistuminen yhdessä kohteessa ei takaa toimivuutta koko organisaatiossa. Eri vuoro, volyymi tai kulttuuri voi muuttaa tulosta — siksi laajennus tehdään vaiheittain, ei kertarysäyksellä."},
+{t:"h",x:"Käyttöönottosuunnitelma"},
+{t:"p",x:"Kun pilotti täyttää onnistumiskriteerit, laaditaan käyttöönottosuunnitelma: kuka tekee mitä, missä järjestyksessä (esim. yksikkö kerrallaan), millä koulutuksella ja viestinnällä, sekä <b>rollback-suunnitelma</b> — miten muutos perutaan, jos ilmenee vakava ongelma."},
+{t:"tbl",h:["","Pilotti","Täysi käyttöönotto"],r:[
+["Mittakaava","Rajattu kohde","Koko prosessi/organisaatio"],
+["Riski toteutuessaan","Pieni, helposti rajattavissa","Suuri, vaikuttaa kaikkiin"],
+["Tarkoitus","Testata ja oppia","Vakiinnuttaa ja hyödyntää"],
+["Palautuvuus","Helppo perua","Vaatii rollback-suunnitelman"]]},
+{t:"p",x:"Riskienhallinta ei pääty pilottiin: FMEA päivitetään uudelle prosessille ennen laajaa käyttöönottoa, koska uusi tapa tehdä työtä tuo lähes aina uusia vikaantumistapoja, joita alkuperäinen FMEA ei kattanut."}],
+q:[
+{k:"mc",q:"Miksi ratkaisu pilotoidaan ennen koko organisaation käyttöönottoa?",o:["Jotta projekti kestää pidempään","Jotta virheet ja yllätykset löytyvät pienessä, halvassa mittakaavassa","Koska Control-vaihe vaatii sitä muodollisesti","Jotta sponsori näkee raportin nopeammin"],a:1,e:"Pilotti rajaa mahdollisen virheen vaikutuksen pieneen kohteeseen ja tuottaa oppia ennen kuin riski kasvaa koko organisaation kokoiseksi."},
+{k:"mc",q:"Mitä PDCA:n Check-vaihe tekee?",o:["Suunnittelee kokeen mittarit","Toteuttaa ratkaisun pienessä mittakaavassa","Vertaa pilotin tuloksia tavoitteeseen ja lähtötasoon","Kouluttaa koko henkilöstön"],a:2,e:"Check on vertailu- ja arviointivaihe: siinä päätetään, tukeeko data siirtymistä Act-vaiheeseen."},
+{k:"tf",q:"Pilotin onnistuminen yhdessä tiimissä takaa, että ratkaisu toimii samalla tavalla koko organisaatiossa.",a:false,e:"Muut vuorot, volyymit tai kulttuurit voivat muuttaa tulosta. Siksi laajennus tehdään vaiheittain ja tuloksia seurataan matkan varrella."},
+{k:"mc",q:"Pilotti keskeytyy hallitsemattomasti, koska kenelläkään ei ollut etukäteen sovittua rajaa sille, milloin se pysäytetään. Mikä pilotin suunnittelun osa puuttui?",o:["Kohteen rajaus","Poistumiskriteeri","PDCA-runko","Rollback-suunnitelma täydessä käyttöönotossa"],a:1,e:"Poistumiskriteeri (milloin pilotti keskeytetään hallitusti) pitää sopia etukäteen, ei tilanteen tullen."},
+{k:"match",q:"Yhdistä käyttöönottosuunnitelman osa sisältöön.",pairs:[["Vaiheistus","Missä järjestyksessä ja millä aikataululla laajennus etenee"],["Koulutus","Varmistaa, että uusi tapa osataan ennen käyttöönottoa"],["Viestintä","Kertoo, mitä muuttuu, kenelle ja miksi"],["Rollback-suunnitelma","Kuvaa, miten muutos perutaan vakavassa ongelmassa"]],e:"Käyttöönottosuunnitelma vastaa kysymyksiin kuka, mitä, milloin ja mitä tehdään, jos jokin epäonnistuu."},
+{k:"mc",q:"Miksi FMEA päivitetään ennen laajaa käyttöönottoa, vaikka pilotti onnistui?",o:["Koska alkuperäinen FMEA vanhenee ajan myötä automaattisesti","Koska uusi prosessi tuo lähes aina uusia vikaantumistapoja, joita vanha FMEA ei kata","Koska talousosasto vaatii sen ennen hyötyjen vahvistamista","Koska Control-vaihe ei voi alkaa ilman uutta FMEA:ta"],a:1,e:"Uusi tapa tehdä työtä muuttaa riskiprofiilin. FMEA:ta päivitetään aina, kun prosessi muuttuu merkittävästi."}]}
+]},
+
+{id:"ph5",code:"C",name:"Control",tag:"Parannuksen vakiinnuttaminen",lessons:[
+
+{id:"l51",title:"Ohjauskortit",sub:"Yleissyy, erikoissyy ja kortin valinta",
+theory:[
+{t:"p",x:"Ohjauskortti (control chart) erottaa prosessin normaalin vaihtelun poikkeuksellisesta. Tämä on Control-vaiheen ydin: ilman erottelua reagoidaan kohinaan ja tehdään prosessista huonompi."},
+{t:"h",x:"Kaksi vaihtelun lajia"},
+{t:"tbl",h:["","Yleissyy (common cause)","Erikoissyy (special cause)"],r:[
+["Luonne","Prosessiin sisäänrakennettu, satunnainen","Ulkopuolinen, tunnistettava tapahtuma"],
+["Näkyy kortilla","Pisteet rajojen sisällä, satunnainen kuvio","Piste rajan ulkopuolella tai systemaattinen kuvio"],
+["Vastuu","Johto: prosessi on muutettava","Prosessin tekijä: syy etsitään ja poistetaan"],
+["Väärä reaktio","Säätäminen lisää vaihtelua (tampering)","Sivuuttaminen tekee poikkeamasta pysyvän"]]},
+{t:"note",x:"<b>Ohjausrajat ≠ spesifikaatiorajat.</b> Ohjausrajat lasketaan prosessin omasta datasta (±3σ keskiarvosta) ja kertovat mihin prosessi kykenee. Spesifikaatiorajat tulevat asiakkaalta ja kertovat mitä vaaditaan. Niitä ei koskaan piirretä samaan ohjauskorttiin."},
+{t:"h",x:"Kortin valinta"},
+{t:"tbl",h:["Data","Tilanne","Kortti"],r:[
+["Jatkuva","Yksittäisiä havaintoja","I-MR"],
+["Jatkuva","Alaryhmiä, koko 2–9","X̄-R"],
+["Jatkuva","Alaryhmiä, koko ≥ 10","X̄-S"],
+["Attribuutti","Viallisten osuus, vaihteleva otos","p"],
+["Attribuutti","Viallisten määrä, vakio otos","np"],
+["Attribuutti","Vikojen määrä, vakio otos","c"],
+["Attribuutti","Vikoja yksikköä kohti, vaihteleva otos","u"]]},
+{t:"h",x:"Erikoissyyn tunnusmerkit"},
+{t:"l",x:["Yksi piste ohjausrajojen ulkopuolella.","7–8 peräkkäistä pistettä samalla puolella keskiviivaa.","6–7 peräkkäistä pistettä nousevana tai laskevana trendinä.","14 peräkkäistä pistettä vuorotellen ylös ja alas.","Epätavallinen kasautuminen keskiviivan lähelle tai rajojen läheisyyteen."]},
+{t:"p",x:"Kortti perustetaan vähintään 20–25 alaryhmästä. Kun prosessia on muutettu Improve-vaiheessa, ohjausrajat lasketaan uudelleen — vanhat rajat kuvaavat vanhaa prosessia."}],
+q:[
+{k:"mc",q:"Kaikki pisteet ovat ohjausrajojen sisällä, mutta 9 viimeistä ovat keskiviivan yläpuolella. Mitä tämä on?",o:["Normaalia yleissyyvaihtelua","Erikoissyy: prosessi on siirtynyt","Mittausvirhe","Merkki hyvästä suorituskyvystä"],a:1,e:"Systemaattinen kuvio on erikoissyyn merkki, vaikka rajat eivät ylity. Peräkkäiset pisteet samalla puolella osoittavat tason siirtymän."},
+{k:"mc",q:"Seurataan viallisten osuutta päivittäisistä erilaisen kokoisista eristä. Mikä kortti?",o:["I-MR","X̄-R","p-kortti","c-kortti"],a:2,e:"Viallisten osuus ja vaihteleva otoskoko → p-kortti. c-kortti laskee vikojen määrää vakio-otoksesta."},
+{k:"tf",q:"Spesifikaatiorajat kannattaa piirtää ohjauskorttiin, jotta nähdään täyttääkö prosessi vaatimukset.",a:false,e:"Niitä ei sekoiteta. Ohjausrajat kuvaavat prosessin ääntä, spesifikaatiorajat asiakkaan ääntä. Sekoittaminen johtaa turhaan säätämiseen."},
+{k:"mc",q:"Prosessi on tilastollisesti ohjauksessa, mutta operaattori säätää parametreja jokaisen keskiarvosta poikkeavan pisteen jälkeen. Mitä tapahtuu?",o:["Vaihtelu pienenee","Vaihtelu kasvaa (tampering)","Ohjausrajat kapenevat","Cpk nousee"],a:1,e:"Yleissyyvaihteluun reagoiminen lisää vaihtelua. Tämä on Demingin kuvaama tampering-ilmiö."},
+{k:"mc",q:"Mittaus tehdään yksittäisistä havainnoista, yksi arvo kerrallaan, data on jatkuvaa. Mikä kortti?",o:["I-MR","X̄-S","np","u"],a:0,e:"I-MR (individuals and moving range) on tarkoitettu yksittäisille havainnoille, kun alaryhmiä ei voi muodostaa."},
+{k:"match",q:"Yhdistä havainto tulkintaan.",pairs:[["Piste ohjausrajan ulkopuolella","Erikoissyy, selvitä tapahtuma"],["Satunnainen kuvio rajojen sisällä","Yleissyy, älä säädä"],["7 nousevaa pistettä","Trendi, erikoissyy"],["Prosessi muutettu Improve-vaiheessa","Laske ohjausrajat uudelleen"]],e:"Kortin lukeminen on kuviontunnistusta, ei vain rajojen tarkistusta."}]},
+
+{id:"l52",title:"Ohjaussuunnitelma ja standardityö",sub:"Miten parannus ei valu takaisin",
+theory:[
+{t:"p",x:"Control-vaiheen tehtävä on varmistaa, että parannus säilyy ilman projektitiimin läsnäoloa. Ilman tätä tyypillinen prosessi palautuu lähtötasolle 6–12 kuukaudessa."},
+{t:"h",x:"Ohjaussuunnitelma (control plan)"},
+{t:"p",x:"Ohjaussuunnitelma vastaa jokaisen kriittisen x-tekijän osalta kysymyksiin: mitä mitataan, millä menetelmällä, kuinka usein, kuka mittaa, mitkä ovat rajat ja <b>mitä tehdään, jos raja ylittyy</b>. Viimeinen kohta on tärkein ja useimmin puuttuva: reaktiosuunnitelma."},
+{t:"tbl",h:["Sarake","Sisältö"],r:[
+["Prosessivaihe","Missä mitataan"],
+["Mitattava x tai Y","Kriittinen muuttuja"],
+["Spesifikaatio","Tavoite ja rajat"],
+["Mittausmenetelmä","Väline ja operatiivinen määritelmä"],
+["Otos ja tiheys","Kuinka paljon, kuinka usein"],
+["Vastuu","Nimetty henkilö tai rooli"],
+["Reaktiosuunnitelma","Mitä tehdään poikkeamassa"]]},
+{t:"h",x:"Ohjauskeinojen vahvuusjärjestys"},
+{t:"l",x:["<b>1. Poistaminen</b> — vaihe, jossa virhe syntyi, poistetaan kokonaan.","<b>2. Virheenesto</b> — poka-yoke tekee virheen mahdottomaksi.","<b>3. Automaattinen hälytys</b> — järjestelmä havaitsee ja pysäyttää.","<b>4. Standardityö ja visuaalinen ohjaus</b> — sama tapa kaikilla, näkyvästi.","<b>5. Koulutus ja ohjeistus</b> — heikoin, riippuu ihmisen muistista."]},
+{t:"note",x:"Jos ainoa ohjauskeino on koulutus, parannus on käytännössä väliaikainen. Pyri aina ylemmäs listalla."},
+{t:"h",x:"Standardityö"},
+{t:"p",x:"Standardityö on paras tunnettu tapa tehdä työ, dokumentoituna ja käytössä kaikilla. Se ei ole jäykkyyttä vaan parantamisen edellytys: ilman standardia ei ole vertailukohtaa, jota vasten seuraava parannus voidaan todeta."},
+{t:"h",x:"Luovutus"},
+{t:"p",x:"Projekti päättyy, kun prosessinomistaja on ottanut vastaan ohjaussuunnitelman, dokumentaatio on päivitetty, henkilöstö on koulutettu, hyödyt on todennettu talousosaston hyväksymänä ja opit on jaettu muille yksiköille."}],
+q:[
+{k:"mc",q:"Mikä on ohjaussuunnitelman useimmin puuttuva ja silti tärkein osa?",o:["Mittarin nimi","Otoskoko","Reaktiosuunnitelma poikkeamalle","Vastuuhenkilö"],a:2,e:"Ilman ennalta sovittua reaktiota poikkeamahavainto ei johda toimenpiteeseen, jolloin koko mittaus on hyödytön."},
+{k:"mc",q:"Mikä ohjauskeino on vahvin?",o:["Koulutus","Virheenesto (poka-yoke)","Kuukausiraportointi","Työohjeen päivitys"],a:1,e:"Vahvuusjärjestys: poistaminen, virheenesto, automaattinen hälytys, standardityö, koulutus. Ihmisen muistin varaan jäävä ohjaus on heikoin."},
+{k:"tf",q:"Standardityö estää jatkuvan parantamisen, koska se lukitsee toimintatavan.",a:false,e:"Päinvastoin: standardi on vertailukohta, jota vasten parannus voidaan todeta. Ilman standardia paluu vanhaan jää huomaamatta."},
+{k:"mc",q:"Projekti on valmis, mutta prosessinomistajaa ei ole nimetty ohjaussuunnitelman ylläpitäjäksi. Mikä on todennäköinen seuraus?",o:["Ei mitään, kunhan mittarit on määritelty","Prosessi palautuu vähitellen lähtötasolle","Ohjausrajat kapenevat itsestään","Cpk paranee edelleen"],a:1,e:"Ilman nimettyä omistajaa ja seurantaa parannukset valuvat tyypillisesti takaisin 6–12 kuukaudessa."},
+{k:"match",q:"Yhdistä ohjauskeino vahvuustasoonsa.",pairs:[["Vahvin","Virhettä aiheuttavan vaiheen poisto"],["Vahva","Poka-yoke eli virheenesto"],["Keskitaso","Standardityö ja visuaalinen ohjaus"],["Heikoin","Koulutus ja muistuttaminen"]],e:"Mitä vähemmän ohjaus riippuu ihmisen muistista, sitä kestävämpi se on."},
+{k:"mc",q:"Mikä kuuluu projektin luovutukseen?",o:["Ohjaussuunnitelman vastaanotto, todennetut hyödyt ja koulutettu henkilöstö","Uusi charter","Uusi Pareto-analyysi","Vain loppuraportti sponsorille"],a:0,e:"Luovutus siirtää vastuun prosessinomistajalle ja edellyttää talousosaston vahvistamat hyödyt sekä päivitetyn dokumentaation."}]},
+
+{id:"l53",title:"Hyötyjen todentaminen ja projektin päätös",sub:"Näyttö siitä, että muutos oli parannus",
+theory:[
+{t:"p",x:"Control-vaiheessa on osoitettava datalla, että lähtötason ja lopputilan välinen ero on todellinen eikä satunnaista vaihtelua."},
+{t:"h",x:"Todentamisen kolme askelta"},
+{t:"l",x:["<b>1. Tilastollinen todentaminen</b> — verrataan ennen- ja jälkeen-dataa sopivalla testillä (2-otoksen t-testi, 2-proportion test, ANOVA). p ≤ 0,05 osoittaa eron todelliseksi.","<b>2. Stabiiliuden todentaminen</b> — uusi taso on pysynyt ohjauskortilla riittävän ajan, tyypillisesti vähintään 20–25 havaintopistettä ilman erikoissyitä.","<b>3. Taloudellinen todentaminen</b> — hyöty lasketaan ja talousosasto vahvistaa sen."]},
+{t:"note",x:"Belt ei laske hyötyä yksin. Uskottavuus edellyttää, että laskentaperiaatteet ja luvut vahvistaa talousfunktio."},
+{t:"h",x:"Kova ja pehmeä hyöty"},
+{t:"tbl",h:["Tyyppi","Esimerkki"],r:[
+["Kova (hard)","Toteutuva kustannussäästö, kasvanut kate, poistuva ostoerä"],
+["Pehmeä (soft)","Vapautunut työaika, riskin pienentyminen, parantunut tyytyväisyys"],
+["Vältetty kustannus","Investointi, jota ei tarvinnut tehdä"]]},
+{t:"p",x:"Vapautunut työaika muuttuu kovaksi hyödyksi vasta, kun se on tosiasiassa kohdennettu muualle tai resurssia on vähennetty. Muuten se on kapasiteettia, ei säästöä."},
+{t:"h",x:"Ennen–jälkeen-vertailun sudenkuopat"},
+{t:"l",x:["<b>Kausivaihtelu</b> — vertailujaksot eivät ole vertailukelpoisia, jos kysyntä vaihtelee kausittain.","<b>Muut samanaikaiset muutokset</b> — organisaatiomuutos, järjestelmäpäivitys tai volyymin muutos voi selittää eron.","<b>Hawthorne-ilmiö</b> — suoritus paranee pelkän seurannan takia ja palautuu, kun huomio siirtyy muualle.","<b>Liian lyhyt seurantajakso</b> — muutama hyvä viikko ei ole näyttö uudesta tasosta."]},
+{t:"h",x:"Päätös ja levittäminen"},
+{t:"p",x:"Lopuksi kirjataan opit, tunnistetaan mihin muualle ratkaisu on siirrettävissä (replication) ja määritetään seuraava tarkastuspiste, jossa prosessinomistaja raportoi tason säilymisestä — tyypillisesti 3, 6 ja 12 kuukauden kohdalla."}],
+q:[
+{k:"mc",q:"Virhetaso laski 8 %:sta 5 %:iin. Miten osoitetaan, ettei kyse ole satunnaisvaihtelusta?",o:["Piirretään pylväskaavio","Tehdään tilastollinen testi ennen- ja jälkeen-datalle","Kysytään prosessinomistajalta","Lasketaan uusi Cpk"],a:1,e:"Kahden osuuden vertailussa käytetään 2-proportion testiä. Pelkkä kahden luvun vertailu ei erota parannusta normaalista vaihtelusta."},
+{k:"tf",q:"Vapautunut työaika voidaan kirjata suoraan kovaksi kustannussäästöksi.",a:false,e:"Se on pehmeä hyöty, kunnes aika on tosiasiassa kohdennettu muuhun tuottavaan työhön tai resurssia on vähennetty."},
+{k:"mc",q:"Parannus näyttää toimivan, mutta samaan aikaan otettiin käyttöön uusi järjestelmä. Mikä ongelma tässä on?",o:["Otos on liian suuri","Muutoksen vaikutusta ei voi erottaa muusta samanaikaisesta muutoksesta","Data on attribuuttidataa","Ohjausrajat ovat väärin"],a:1,e:"Sekoittava tekijä (confounding). Ilman erottelua ei voida sanoa, kumpi muutos tuotti tuloksen."},
+{k:"mc",q:"Kuinka pitkään uutta tasoa tyypillisesti seurataan ohjauskortilla ennen kuin se todetaan pysyväksi?",o:["3–5 pistettä","Vähintään 20–25 pistettä ilman erikoissyitä","Yksi kuukausi riippumatta pistemäärästä","Ei tarvetta seurata"],a:1,e:"Riittävä pistemäärä tarvitaan, jotta stabiilius voidaan arvioida luotettavasti ja ohjausrajat laskea uudelleen."},
+{k:"match",q:"Yhdistä sudenkuoppa kuvaukseen.",pairs:[["Kausivaihtelu","Vertailujaksot eivät ole keskenään vertailukelpoisia"],["Hawthorne-ilmiö","Suoritus paranee pelkän seurannan takia"],["Sekoittava tekijä","Toinen samanaikainen muutos selittää eron"],["Liian lyhyt seuranta","Muutama hyvä jakso tulkitaan uudeksi tasoksi"]],e:"Kaikki neljä johtavat samaan virheeseen: hyöty raportoidaan suurempana kuin se on."},
+{k:"mc",q:"Kuka vahvistaa projektin taloudellisen hyödyn?",o:["Green Belt itse","Talousfunktio","Prosessin tekijät","Asiakas"],a:1,e:"Talousosaston vahvistus on uskottavuuden edellytys ja vakiintunut käytäntö LSS-ohjelmissa."}]},
+
+{id:"l54",title:"Visuaalinen johtaminen ja päivittäisjohtaminen",sub:"Miten ohjaussuunnitelma pysyy käytössä arjessa",
+theory:[
+{t:"p",x:"Ohjauskortit ja ohjaussuunnitelma tarvitsevat rinnalleen päivittäisen johtamisen rutiinin. Ilman sitä ohjaussuunnitelma jää dokumentiksi, jota kukaan ei käytännössä käytä."},
+{t:"h",x:"Visuaalinen johtaminen"},
+{t:"p",x:"Periaate: poikkeama pitää nähdä yhdellä silmäyksellä ilman raporttia tai kyselyä. Tyypillisiä keinoja ovat väri-koodatut tilat (vihreä/keltainen/punainen), tiimitaulut, joissa päivän mittarit näkyvät kaikille, ja fyysinen tai digitaalinen andon-signaali."},
+{t:"h",x:"Andon"},
+{t:"p",x:"Andon on signaali — valo, ääni tai sähköinen hälytys — jolla kuka tahansa prosessissa työskentelevä voi pysäyttää työn tai pyytää apua heti poikkeaman havaittuaan. Periaate on peräisin Toyotalta: virheen havaitsemisen ja pysäyttämisen valta annetaan sille, joka työn tekee, ei vasta esimiehelle raportoinnin kautta."},
+{t:"h",x:"Tier-mallinen päivittäisjohtaminen"},
+{t:"p",x:"Lyhyt, seisten pidettävä palaveri (10–15 min) samaan aikaan joka päivä käy läpi edellisen päivän mittarit, poikkeamat ja niille sovitut toimenpiteet. Kolmitasoisessa (tier) mallissa tiimitaso kokoontuu päivittäin, esimiestaso viikoittain ja johtotaso kuukausittain — poikkeama <b>nousee</b> tasolta toiselle vain, jos sitä ei saada ratkaistua alemmalla tasolla."},
+{t:"note",x:"Taulu, jota kukaan ei käytä toimenpiteiden kirjaamiseen, on itsessään hukkaa. Jokaiselle poikkeamalle kirjataan omistaja ja määräaika — muuten päivittäisjohtaminen näyttää aktiiviselta mutta ei tuota mitään."},
+{t:"h",x:"Layered process audit ja gemba-kävely"},
+{t:"p",x:"Johto käy säännöllisesti <b>gembassa</b> — paikassa, jossa työ oikeasti tehdään — tarkistamassa, että standardityötä noudatetaan ja ohjaussuunnitelma on käytössä. Tarkoitus ei ole etsiä syyllistä vaan tunnistaa esteitä, joiden takia standardia ei noudateta."},
+{t:"p",x:"Nämä käytännöt kytkeytyvät suoraan projektin luovutukseen: ilman päivittäisjohtamisen rutiinia parannus nojaa vain dokumenttiin, ja Hawthorne-ilmiön laantuessa prosessi ajautuu tyypillisesti takaisin lähtötasolle."}],
+q:[
+{k:"mc",q:"Mikä on andon-järjestelmän ydintarkoitus?",o:["Kerätä kuukausittaista laatudataa raporttia varten","Antaa kenelle tahansa mahdollisuus pysäyttää prosessi tai pyytää apua heti poikkeaman havaitessa","Korvata ohjauskortit visuaalisella taululla","Automatisoida FMEA:n päivitys"],a:1,e:"Andon siirtää havaitsemisen ja reagoinnin vallan sille, joka työn tekee, ilman raportointiviivettä."},
+{k:"mc",q:"Tier-mallissa poikkeama nostetaan seuraavalle tasolle…",o:["Aina kerran viikossa aikataulun mukaan","Kun sitä ei saada ratkaistua nykyisellä tasolla","Kun johto sitä erikseen pyytää","Vain, jos asiakas valittaa"],a:1,e:"Eskalaatio on ehdollinen: taso nousee vasta, kun ongelmaa ei kyetä ratkaisemaan siellä, missä se havaittiin."},
+{k:"tf",q:"Päivittäispalaverin tarkoitus on esitellä johdolle kuukauden kokonaistulos.",a:false,e:"Se on lyhyt, edellisen päivän mittareihin ja poikkeamiin keskittyvä tiimitason rutiini — ei kuukausiraportointi johdolle."},
+{k:"mc",q:"Miksi visuaalinen johtaminen tukee ohjaussuunnitelman toteutumista käytännössä?",o:["Se korvaa tarpeen mitata prosessia","Poikkeama näkyy heti ilman erillistä raporttia, jolloin reaktio nopeutuu","Se poistaa tarpeen nimetä vastuuhenkilöitä","Se vähentää mittausten määrää"],a:1,e:"Kun poikkeama on näkyvissä välittömästi, ohjaussuunnitelman reaktiosuunnitelma pääsee käyttöön ilman viivettä."},
+{k:"match",q:"Yhdistä käsite selitykseensä.",pairs:[["Andon","Signaali, jolla kuka tahansa voi pysäyttää tai hälyttää heti"],["Tier board","Päivittäisjohtamisen taulu, jolta poikkeama voi nousta tasolta toiselle"],["Gemba-kävely","Johdon käynti siellä, missä työ tehdään"],["Layered process audit","Säännöllinen tarkistus, että standardityötä noudatetaan"]],e:"Kaikki neljä ovat konkreettisia tapoja pitää Control-vaiheen ohjaus näkyvänä ja käytössä, ei vain dokumentoituna."},
+{k:"mc",q:"Mikä on gemba-kävelyn ensisijainen tarkoitus?",o:["Etsiä syyllinen poikkeamaan","Tarkistaa standardityön noudattaminen ja tunnistaa esteitä sen taustalla","Kerätä allekirjoituksia ohjaussuunnitelmaan","Korvata ohjauskortit"],a:1,e:"Gemba-kävely on esteiden tunnistamista ja tukea, ei syyllisen etsimistä."}]}
+]}
+];
+
+/* ============ tila ja tallennus ============ */
+const KEY="lss-gb-progress-v1";
+const THEME_KEY="lss-gb-theme";
+const PASS=0.8;
+let P={lessons:{},hist:[],tot:{c:0,n:0}};
+let S={view:"home",phase:null,lesson:null,quiz:null};
+let storageOK=true;
+
+function loadP(){
+  try{
+    const raw=localStorage.getItem(KEY);
+    if(raw){const d=JSON.parse(raw);P={lessons:d.lessons||{},hist:d.hist||[],tot:d.tot||{c:0,n:0}};}
+  }catch(e){/* yksityinen selaus, evästeet estetty tms. */ storageOK=false;}
+}
+function saveP(){
+  try{localStorage.setItem(KEY,JSON.stringify(P));}catch(e){storageOK=false;}
+}
+
+/* ============ tumma / vaalea tila ============ */
+function effectiveTheme(){
+  let t=null;
+  try{t=localStorage.getItem(THEME_KEY);}catch(e){/* ei käytettävissä */}
+  if(t==="light"||t==="dark")return t;
+  return (window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";
+}
+function applyTheme(){
+  const stored=(()=>{try{return localStorage.getItem(THEME_KEY);}catch(e){return null;}})();
+  if(stored==="light"||stored==="dark")document.documentElement.setAttribute("data-theme",stored);
+  else document.documentElement.removeAttribute("data-theme");
+  const btn=$("theme-toggle");
+  if(btn)btn.textContent=effectiveTheme()==="dark"?"Vaalea tila":"Tumma tila";
+}
+function toggleTheme(){
+  const next=effectiveTheme()==="dark"?"light":"dark";
+  try{localStorage.setItem(THEME_KEY,next);}catch(e){/* ei käytettävissä, vaihtuu vain tälle istunnolle */}
+  applyTheme();
+}
+
+/* ============ apurit ============ */
+const $=id=>document.getElementById(id);
+const allLessons=()=>CURRICULUM.flatMap(p=>p.lessons);
+const lessonById=id=>allLessons().find(l=>l.id===id);
+const phaseOf=id=>CURRICULUM.find(p=>p.lessons.some(l=>l.id===id));
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function phasePct(p){const d=p.lessons.filter(l=>P.lessons[l.id]&&P.lessons[l.id].done).length;return Math.round(d/p.lessons.length*100);}
+function totalPct(){const all=allLessons();const d=all.filter(l=>P.lessons[l.id]&&P.lessons[l.id].done).length;return Math.round(d/all.length*100);}
+function accuracy(){return P.tot.n?P.tot.c/P.tot.n:0;}
+function attemptedLessons(){return allLessons().filter(l=>P.lessons[l.id]);}
+function weakestLessons(n){
+  return allLessons()
+    .map(l=>({l,score:P.lessons[l.id]?P.lessons[l.id].best:-1}))
+    .sort((a,b)=>a.score-b.score)
+    .slice(0,n)
+    .map(x=>x.l);
+}
+function sigmaLevel(){
+  const p=accuracy(); if(P.tot.n<10) return null;
+  const dpmo=Math.max((1-p)*1e6,3.4);
+  const v=29.37-2.221*Math.log(dpmo);
+  if(v<=0) return 6;
+  return Math.max(0,0.8406+Math.sqrt(v));
+}
+
+/* ============ ohjauskortti (allekirjoituselementti) ============ */
+function controlChart(){
+  const h=P.hist;
+  if(h.length<5) return '<div class="chart-card"><p class="eyebrow">Suorituskykykortti</p><p style="margin:8px 0 4px;font-size:14.5px;color:rgba(239,237,228,.72)">Kortti piirtyy, kun olet vastannut viiteen kysymykseen. Jokainen piste on liukuva osuvuus viimeisistä viidestä vastauksesta.</p></div>';
+  const w=5,pts=[];
+  for(let i=w-1;i<h.length;i++){let s=0;for(let j=i-w+1;j<=i;j++)s+=h[j];pts.push(s/w);}
+  const show=pts.slice(-45);
+  const W=680,H=170;
+  const L=34,R=12,T=14,B=22;
+  const x=i=>L+(show.length<2?0:i*(W-L-R)/(show.length-1));
+  const y=v=>T+(1-v)*(H-T-B);
+  const line=show.map((v,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+  const mean=show.reduce((a,b)=>a+b,0)/show.length;
+  const dots=show.map((v,i)=>`<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="3" fill="${v<PASS?"#E4796A":"#8FD3BE"}"/>`).join("");
+  const gl=[0,.5,PASS,1].map(v=>`<line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" stroke="${v===PASS?"#E0A30F":"rgba(239,237,228,.16)"}" stroke-width="1" ${v===PASS?'stroke-dasharray="5 4"':''}/><text x="0" y="${y(v)+4}" fill="rgba(239,237,228,.5)" font-family="IBM Plex Mono, monospace" font-size="10">${Math.round(v*100)}%</text>`).join("");
+  return `<div class="chart-card">
+    <p class="eyebrow">Suorituskykykortti · liukuva osuvuus (n=5)</p>
+    <svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Liukuva osuvuus viimeisistä vastauksista">
+      ${gl}
+      <line x1="${L}" y1="${y(mean)}" x2="${W-R}" y2="${y(mean)}" stroke="rgba(239,237,228,.55)" stroke-width="1"/>
+      <path d="${line}" fill="none" stroke="#EFEDE4" stroke-width="1.6" stroke-linejoin="round"/>
+      ${dots}
+    </svg>
+    <div class="chart-legend">
+      <span><i style="background:#E0A30F"></i>Tavoiteraja 80 %</span>
+      <span><i style="background:rgba(239,237,228,.55)"></i>Keskitaso ${Math.round(mean*100)} %</span>
+      <span><i style="background:#E4796A"></i>Rajan alle jääneet</span>
+    </div>
+  </div>`;
+}
+
+/* ============ näkymät ============ */
+function renderRail(){
+  $("rail").innerHTML='<p class="rail-title">Vaiheet</p>'+CURRICULUM.map(p=>{
+    const pc=phasePct(p);
+    return `<button class="phase-btn ${S.phase===p.id?"on":""} ${pc===100?"full":""}" data-ph="${p.id}" aria-pressed="${S.phase===p.id}">
+      <span class="code">${p.code}</span><span>${p.name}</span><span class="pct">${pc}%</span></button>`;
+  }).join("");
+  $("rail").querySelectorAll("[data-ph]").forEach(b=>b.onclick=()=>{S.view="phase";S.phase=b.dataset.ph;render();});
+  $("hdr-pct").textContent=totalPct()+" %";
+}
+
+function homeView(){
+  const sg=sigmaLevel();
+  const done=allLessons().filter(l=>P.lessons[l.id]&&P.lessons[l.id].done).length;
+  return `
+  <p class="eyebrow">Green Belt · DMAIC</p>
+  <h2 class="big">Opettele Lean Six Sigma<br>kysymys kerrallaan.</h2>
+  <p class="lede" style="max-width:56ch">Kuusi vaihetta, ${allLessons().length} oppituntia ja ${allLessons().reduce((a,l)=>a+l.q.length,0)} harjoitusta. Jokainen oppitunti alkaa teoriasta ja päättyy harjoituksiin: monivalintoihin, tosi/epätosi-väittämiin ja paritustehtäviin. Oppitunti merkitään suoritetuksi ${Math.round(PASS*100)} %:n tuloksella.</p>
+  <div class="btn-row" style="margin-bottom:26px">
+    <button class="btn" id="go-next">${done? "Jatka siitä mihin jäit":"Aloita perusteista"}</button>
+    ${attemptedLessons().length?'<button class="btn ghost" id="go-weak">Harjoittele heikoimmat aiheet</button>':''}
+    ${P.tot.n>=20?'<button class="btn ghost" id="go-exam">Loppukoe · 20 kysymystä</button>':''}
+  </div>
+  <div class="stat-grid">
+    <div class="stat"><b>${done}/${allLessons().length}</b><span>Oppituntia</span></div>
+    <div class="stat"><b>${P.tot.n?Math.round(accuracy()*100):"–"} %</b><span>Osuvuus</span></div>
+    <div class="stat"><b>${sg?sg.toFixed(2)+"σ":"–"}</b><span>Harjoitussigma</span></div>
+  </div>
+  ${controlChart()}
+  <hr class="rule">
+  <h3 class="sec" style="margin-top:0">Vaiheet</h3>
+  ${CURRICULUM.map(p=>`<button class="lesson-row" data-ph="${p.id}">
+    <span class="idx">${p.code}</span>
+    <span class="ttl">${p.name}<small>${p.tag}</small></span>
+    <span class="badge ${phasePct(p)===100?"ok":phasePct(p)>0?"mid":""}">${phasePct(p)} %</span></button>`).join("")}
+  <div class="foot">
+    <small>${storageOK?"Edistyminen tallentuu automaattisesti":"Tallennus ei käytettävissä — edistyminen katoaa sivun sulkeutuessa"}</small>
+    <button class="btn ghost sm" id="reset">Nollaa edistyminen</button>
+  </div>`;
+}
+
+function phaseView(){
+  const p=CURRICULUM.find(x=>x.id===S.phase);
+  return `<p class="eyebrow">Vaihe ${p.code}</p>
+  <h2 class="big">${p.name}</h2>
+  <p class="lede" style="margin-bottom:22px">${p.tag}</p>
+  ${p.lessons.map((l,i)=>{
+    const st=P.lessons[l.id];
+    const b=st?(st.done?`<span class="badge ok">${Math.round(st.best*100)} %</span>`:`<span class="badge mid">${Math.round(st.best*100)} %</span>`):`<span class="badge">${l.q.length} kysymystä</span>`;
+    return `<button class="lesson-row" data-ls="${l.id}"><span class="idx">${p.code}.${i+1}</span>
+      <span class="ttl">${l.title}<small>${l.sub}</small></span>${b}</button>`;}).join("")}`;
+}
+
+function theoryBlock(b){
+  if(b.t==="p")return `<p>${b.x}</p>`;
+  if(b.t==="h")return `<h3 class="sec">${b.x}</h3>`;
+  if(b.t==="l")return `<ul class="bul">${b.x.map(i=>`<li>${i}</li>`).join("")}</ul>`;
+  if(b.t==="note")return `<div class="note">${b.x}</div>`;
+  if(b.t==="f")return `<div class="formula">${b.x}</div>`;
+  if(b.t==="tbl")return `<div class="tbl-wrap"><table><thead><tr>${b.h.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${b.r.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  return "";
+}
+
+function lessonView(){
+  const l=lessonById(S.lesson),p=phaseOf(S.lesson);
+  const i=p.lessons.indexOf(l)+1;
+  return `<p class="eyebrow">${p.name} · oppitunti ${p.code}.${i}</p>
+  <h2 class="big" style="font-size:clamp(24px,4.6vw,32px)">${l.title}</h2>
+  <p class="lede" style="margin-bottom:20px">${l.sub}</p>
+  <div class="card">${l.theory.map(theoryBlock).join("")}</div>
+  <div class="btn-row"><button class="btn" id="start-q">Harjoitukset · ${l.q.length} kysymystä</button>
+  <button class="btn ghost" id="back-ph">Takaisin vaiheeseen</button></div>`;
+}
+
+/* ============ harjoitukset ============ */
+function startQuiz(items,title,lessonId){
+  S.quiz={items:items,i:0,correct:0,answered:false,title:title,lessonId:lessonId,sel:null,match:{},wrong:[]};
+  S.view="quiz";render();
+}
+function quizView(){
+  const q=S.quiz,it=q.items[q.i];
+  const types={mc:"Monivalinta",tf:"Tosi vai epätosi",match:"Paritustehtävä"};
+  let body="";
+  if(it.k==="mc"){
+    body=it.o.map((o,i)=>{
+      let cls="opt";
+      if(q.answered){if(i===it.a)cls+=" correct";else if(i===q.sel)cls+=" wrong";else cls+=" dim";}
+      return `<button class="${cls}" data-o="${i}" ${q.answered?"disabled":""}><span class="key">${"ABCD"[i]}</span><span>${o}</span></button>`;}).join("");
+  }else if(it.k==="tf"){
+    const opts=[["Tosi",true],["Epätosi",false]];
+    body='<div class="tf-row">'+opts.map((o,i)=>{
+      let cls="opt";
+      if(q.answered){if(o[1]===it.a)cls+=" correct";else if(i===q.sel)cls+=" wrong";else cls+=" dim";}
+      return `<button class="${cls}" data-o="${i}" ${q.answered?"disabled":""}><span class="key">${i+1}</span><span>${o[0]}</span></button>`;}).join("")+'</div>';
+  }else{
+    if(!q.opts)q.opts=shuffle(it.pairs.map(p=>p[1]));
+    body=it.pairs.map((p,i)=>{
+      let cls="";
+      if(q.answered)cls=(q.match[i]===p[1])?"ok":"no";
+      return `<div class="match-row"><span class="lt">${p[0]}</span>
+        <select data-m="${i}" class="${cls}" ${q.answered?"disabled":""}>
+        <option value="">— valitse —</option>
+        ${q.opts.map(o=>`<option ${q.match[i]===o?"selected":""}>${o}</option>`).join("")}</select></div>`;}).join("")
+        +(q.answered?"":'<div class="btn-row"><button class="btn" id="check-m">Tarkista</button></div>');
+  }
+  let verdict="";
+  if(q.answered){
+    const ok=q.lastOK;
+    let extra="";
+    if(it.k==="match"&&!ok)extra=" Oikeat parit: "+it.pairs.map(p=>`${p[0]} → ${p[1]}`).join("; ")+".";
+    verdict=`<div class="verdict ${ok?"y":"n"}" role="status" aria-live="polite"><h4>${ok?"Oikein":"Väärin"}</h4><p>${it.e}${extra}</p></div>
+    <div class="btn-row"><button class="btn" id="next-q">${q.i+1<q.items.length?"Seuraava kysymys":"Näytä tulos"}</button></div>`;
+  }
+  return `<div class="qhead"><span class="qtype">${types[it.k]}</span>
+    <span class="qtype">${q.i+1} / ${q.items.length} · ${q.title}</span></div>
+    <div class="qbar"><i style="width:${(q.i)/q.items.length*100}%"></i></div>
+    <p class="qtext">${it.q}</p>${body}${verdict}`;
+}
+
+function grade(ok){
+  const q=S.quiz;
+  q.answered=true;q.lastOK=ok;
+  if(ok)q.correct++;else q.wrong.push(q.items[q.i]);
+  P.tot.n++;if(ok)P.tot.c++;
+  P.hist.push(ok?1:0);if(P.hist.length>120)P.hist=P.hist.slice(-120);
+  saveP();render();
+}
+
+function resultView(){
+  const q=S.quiz,sc=q.correct/q.items.length,pass=sc>=PASS;
+  let msg;
+  if(sc===1)msg="Täydet pisteet. Aihe on hallussa.";
+  else if(pass)msg="Läpi. Käy väärin menneiden selitykset läpi ennen seuraavaa osiota.";
+  else if(sc>=0.5)msg="Osa on hallussa. Lue teoria uudelleen ja tee harjoitukset toistamiseen.";
+  else msg="Tulos jäi matalaksi. Palaa teoriaan; harjoitukset kannattaa uusia heti perään.";
+  return `<p class="eyebrow">Tulos · ${q.title}</p>
+  <h2 class="big">${q.correct} / ${q.items.length}<span style="font-size:.45em;color:var(--ink-3)"> · ${Math.round(sc*100)} %</span></h2>
+  <p class="lede" style="max-width:52ch;margin-bottom:20px">${msg}</p>
+  <div class="stat-grid">
+    <div class="stat"><b>${Math.round(sc*100)} %</b><span>Tämä osio</span></div>
+    <div class="stat"><b>${Math.round(accuracy()*100)} %</b><span>Kaikki yhteensä</span></div>
+    <div class="stat"><b>${pass?"Suoritettu":"Kesken"}</b><span>Tila</span></div>
+  </div>
+  ${controlChart()}
+  <div class="btn-row">
+    <button class="btn" id="retry">Tee uudelleen</button>
+    ${q.wrong.length?`<button class="btn ghost" id="retry-wrong">Kertaa väärät (${q.wrong.length})</button>`:""}
+    ${q.lessonId?'<button class="btn ghost" id="re-theory">Takaisin teoriaan</button>':""}
+    <button class="btn ghost" id="to-home">Etusivulle</button>
+  </div>`;
+}
+
+/* ============ render ============ */
+function render(){
+  renderRail();
+  const v=$("view");
+  if(S.view==="home")v.innerHTML=homeView();
+  else if(S.view==="phase")v.innerHTML=phaseView();
+  else if(S.view==="lesson")v.innerHTML=lessonView();
+  else if(S.view==="quiz")v.innerHTML=quizView();
+  else if(S.view==="result")v.innerHTML=resultView();
+  bind();
+  window.scrollTo({top:0,behavior:"instant"});
+}
+
+function bind(){
+  const v=$("view");
+  v.querySelectorAll("[data-ph]").forEach(b=>b.onclick=()=>{S.view="phase";S.phase=b.dataset.ph;render();});
+  v.querySelectorAll("[data-ls]").forEach(b=>b.onclick=()=>{S.view="lesson";S.lesson=b.dataset.ls;render();});
+  const g=(id,fn)=>{const e=$(id);if(e)e.onclick=fn;};
+
+  g("go-next",()=>{
+    const nxt=allLessons().find(l=>!(P.lessons[l.id]&&P.lessons[l.id].done))||allLessons()[0];
+    S.view="lesson";S.lesson=nxt.id;S.phase=phaseOf(nxt.id).id;render();});
+  g("go-exam",()=>{
+    const pool=shuffle(allLessons().flatMap(l=>l.q)).slice(0,20);
+    startQuiz(pool,"Loppukoe",null);});
+  g("go-weak",()=>{
+    const ls=weakestLessons(3);
+    const pool=shuffle(ls.flatMap(l=>l.q)).slice(0,15);
+    startQuiz(pool,"Heikoimmat aiheet",null);});
+  g("reset",()=>{
+    if(!confirm("Nollataanko kaikki edistyminen, pisteet ja suorituskykykortti?"))return;
+    P={lessons:{},hist:[],tot:{c:0,n:0}};saveP();S.view="home";render();});
+  g("start-q",()=>{const l=lessonById(S.lesson);startQuiz(l.q,l.title,l.id);});
+  g("back-ph",()=>{S.view="phase";S.phase=phaseOf(S.lesson).id;render();});
+  g("to-home",()=>{S.view="home";S.phase=null;render();});
+  g("re-theory",()=>{S.view="lesson";S.lesson=S.quiz.lessonId;render();});
+  g("retry",()=>{const q=S.quiz;startQuiz(q.lessonId?lessonById(q.lessonId).q:shuffle(allLessons().flatMap(l=>l.q)).slice(0,20),q.title,q.lessonId);});
+  g("retry-wrong",()=>{const w=S.quiz.wrong;startQuiz(shuffle(w),S.quiz.title+" · väärät kertaus",null);});
+
+  if(S.view==="quiz"){
+    const q=S.quiz,it=q.items[q.i];
+    v.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{
+      const i=+b.dataset.o;q.sel=i;
+      grade(it.k==="mc"?i===it.a:(i===0)===it.a);});
+    v.querySelectorAll("[data-m]").forEach(s=>s.onchange=()=>{q.match[+s.dataset.m]=s.value;});
+    g("check-m",()=>{
+      if(it.pairs.some((p,i)=>!q.match[i])){alert("Valitse pari jokaiselle riville.");return;}
+      grade(it.pairs.every((p,i)=>q.match[i]===p[1]));});
+    g("next-q",()=>{
+      if(q.i+1<q.items.length){q.i++;q.answered=false;q.sel=null;q.match={};q.opts=null;render();}
+      else{
+        const sc=q.correct/q.items.length;
+        if(q.lessonId){
+          const st=P.lessons[q.lessonId]||{best:0,attempts:0};
+          st.attempts++;st.best=Math.max(st.best,sc);st.done=st.best>=PASS;
+          P.lessons[q.lessonId]=st;saveP();}
+        S.view="result";render();}});
+  }
+}
+
+document.onkeydown=e=>{
+  if(S.view!=="quiz")return;
+  const q=S.quiz,it=q.items[q.i];
+  if(q.answered&&(e.key==="Enter"||e.key===" ")){const n=$("next-q");if(n){e.preventDefault();n.click();}return;}
+  if(!q.answered&&it.k!=="match"){
+    const n=parseInt(e.key,10);
+    const max=it.k==="mc"?it.o.length:2;
+    if(n>=1&&n<=max){const b=document.querySelector(`[data-o="${n-1}"]`);if(b)b.click();}}
+};
+
+$("home-btn").onclick=()=>{S.view="home";S.phase=null;render();};
+$("theme-toggle").onclick=toggleTheme;
+applyTheme();
+loadP();
+render();
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{});});
+}
+</script>
+</body>
+</html>
